@@ -47,7 +47,7 @@ public class GameTUI {
 	/* 
 	 * Game loop 
 	 */
-	private static void gameLoop(String gameConfig, WordgameFactory fac){
+	public static void gameLoop(String gameConfig, WordgameFactory fac){
 		Scanner sc = new Scanner(System.in);
 		Wordgame game = fac.gameFactory();
 		boolean turnPlayed;
@@ -108,11 +108,11 @@ public class GameTUI {
 	/*
 	 * Text based UI methods
 	 */
-	private static void tuiDisplay(LetterBag lb) {
+	public static void tuiDisplay(LetterBag lb) {
 		System.out.println("Remaining letters in bag : " + lb.size() + "\n");
 	}
 	
-	private static void tuiDisplay(List<Player> plrs, Player currentPlayer) {
+	public static void tuiDisplay(List<Player> plrs, Player currentPlayer) {
 		for(Player p : plrs){
 			System.out.print( p == currentPlayer ? "> " : "- " );
 			System.out.print( p.getNickname() + " (" + p.getScore() + " points)\n" );
@@ -120,13 +120,13 @@ public class GameTUI {
 		System.out.println("");
 	}
 	
-	private static void tuiDisplay(Board b) {
+	public static void tuiDisplay(Board b) {
 		String[][] dataGrid = b.toArray();
 		//AnsiConsole.out.println(smallBoardString(dataGrid) + "\n");
 		 System.out.println(smallBoardString(dataGrid) + "\n"); // for eclipse dev with ansi color plugin
 	}
 	
-	private static void tuiDisplay(Rack p) {
+	public static void tuiDisplay(Rack p) {
 		System.out.print("Rack : ");
 		for(Character l : p.getContent()){
 			System.out.print(" " + l + " ");
@@ -134,7 +134,7 @@ public class GameTUI {
 		System.out.print("\n");
 	}
 	
-	private static String bigBoardString(String[][] dataGrid) {
+	public static String bigBoardString(String[][] dataGrid) {
 		String result = "      ";
 		
 		// Abscice coord
@@ -202,7 +202,7 @@ public class GameTUI {
 		return result;
 	}
 	
-	private static String smallBoardString(String[][] dataGrid) {
+	public static String smallBoardString(String[][] dataGrid) {
 		String result = "    ";
 		
 		// Abscice coord

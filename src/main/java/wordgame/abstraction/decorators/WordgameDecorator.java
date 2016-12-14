@@ -2,6 +2,7 @@ package wordgame.abstraction.decorators;
 
 import java.util.List;
 
+import wordgame.abstraction.Event;
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.interfaces.Board;
 import wordgame.abstraction.interfaces.Direction;
@@ -10,7 +11,7 @@ import wordgame.abstraction.interfaces.Player;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.abstraction.interfaces.WordgameFactory;
 
-public abstract class WordgameDecorator implements Wordgame, WordgameFactory {
+public abstract class WordgameDecorator extends Wordgame implements WordgameFactory {
 	
 	// ATTRIBUTES & CONSTRUCTOR
 	
@@ -80,6 +81,9 @@ public abstract class WordgameDecorator implements Wordgame, WordgameFactory {
 
 	public void skipTurn() {
 		decoratedWordgame.skipTurn();
+		this.setChanged();
+		this.notifyObservers(Event.NEW_TURN);
+		//System.err.println("BasicWordGame::skipTurn() send NEW_TURN");
 	}
 
 	public boolean isOver() {

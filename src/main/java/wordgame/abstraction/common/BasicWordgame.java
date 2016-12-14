@@ -9,6 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import wordgame.abstraction.Event;
 import wordgame.abstraction.interfaces.Board;
 import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Direction;
@@ -18,7 +19,7 @@ import wordgame.abstraction.interfaces.Rack;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.abstraction.interfaces.WordgameFactory;
 
-public class BasicWordgame implements Wordgame, WordgameFactory {
+public class BasicWordgame extends Wordgame implements WordgameFactory {
 	
 	// ATTRIBUTES
 	
