@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import wordgame.common.Coordinate;
+import wordgame.abstraction.common.Coordinate;
 
 public class CoordinateTest {
 	

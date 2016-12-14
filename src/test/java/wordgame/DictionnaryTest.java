@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 
-import wordgame.common.Dictionnary;
+import wordgame.abstraction.common.Dictionnary;
 
 public class DictionnaryTest {
 

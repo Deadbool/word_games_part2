@@ -13,9 +13,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-import wordgame.common.Coordinate;
-import wordgame.common.SquareBoard;
-import wordgame.common.WordgameException;
+import wordgame.abstraction.common.Coordinate;
+import wordgame.abstraction.common.SquareBoard;
+import wordgame.abstraction.common.WordgameException;
 
 public class SquareBoardTest {
 	

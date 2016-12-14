@@ -14,8 +14,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-import wordgame.common.BasicLetterBag;
-import wordgame.common.WordgameException;
+import wordgame.abstraction.common.BasicLetterBag;
+import wordgame.abstraction.common.WordgameException;
 
 public class BasicLetterBagTest {
 	

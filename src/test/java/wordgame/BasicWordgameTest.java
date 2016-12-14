@@ -8,14 +8,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import wordgame.common.BasicWordgame;
-import wordgame.common.Coordinate;
-import wordgame.common.WordgameException;
-import wordgame.interfaces.Board;
-import wordgame.interfaces.Direction;
-import wordgame.interfaces.LetterBag;
-import wordgame.interfaces.Player;
-import wordgame.interfaces.Wordgame;
+import wordgame.abstraction.common.BasicWordgame;
+import wordgame.abstraction.common.Coordinate;
+import wordgame.abstraction.common.WordgameException;
+import wordgame.abstraction.interfaces.Board;
+import wordgame.abstraction.interfaces.Direction;
+import wordgame.abstraction.interfaces.LetterBag;
+import wordgame.abstraction.interfaces.Player;
+import wordgame.abstraction.interfaces.Wordgame;
 
 public class BasicWordgameTest {
 

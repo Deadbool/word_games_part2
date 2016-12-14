@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import wordgame.common.BasicRack;
-import wordgame.common.WordgameException;
-import wordgame.interfaces.Rack;
+import wordgame.abstraction.common.BasicRack;
+import wordgame.abstraction.common.WordgameException;
+import wordgame.abstraction.interfaces.Rack;
 
 public class BasicRackTest {
 	
