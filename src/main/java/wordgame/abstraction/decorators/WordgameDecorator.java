@@ -2,7 +2,6 @@ package wordgame.abstraction.decorators;
 
 import java.util.List;
 
-import wordgame.abstraction.Event;
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.interfaces.Board;
 import wordgame.abstraction.interfaces.Direction;
@@ -10,6 +9,7 @@ import wordgame.abstraction.interfaces.LetterBag;
 import wordgame.abstraction.interfaces.Player;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.abstraction.interfaces.WordgameFactory;
+import wordgame.control.Event;
 
 public abstract class WordgameDecorator extends Wordgame implements WordgameFactory {
 	

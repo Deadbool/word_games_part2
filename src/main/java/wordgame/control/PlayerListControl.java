@@ -7,7 +7,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JList;
 
-import wordgame.abstraction.Event;
 import wordgame.abstraction.interfaces.Player;
 import wordgame.abstraction.interfaces.Wordgame;
 
@@ -36,8 +35,8 @@ public class PlayerListControl implements Observer {
 	public void updateScores() {
 		DefaultListModel<String> listModel = (DefaultListModel<String>) this.list.getModel();
 		listModel.clear();
+		
 		for (Player player : model.getPlayers()) {
-			
 			listModel.addElement(player.getNickname() + " - " + player.getScore());
 		}
 	}

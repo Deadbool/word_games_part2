@@ -17,11 +17,5 @@ public class GameIHM {
 		
 		WordgameFrame window = new WordgameFrame(game);
 		window.setVisible(true);
-	
-		for (Player player : game.getPlayers()) {
-			player.addPoint(5);
-			game.skipTurn();
-		}
-		
 	}
 }

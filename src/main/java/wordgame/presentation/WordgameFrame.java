@@ -1,15 +1,18 @@
 package wordgame.presentation;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.PlayerListControl;
@@ -19,15 +22,26 @@ public class WordgameFrame extends JFrame {
 	
 	// Model
 	private Wordgame model;
-
+	
 	public WordgameFrame(Wordgame game) {
 		super("Wordgame");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.model = game;
-		this.getContentPane().setLayout(new BorderLayout());
+		
+		JPanel mainPanel = new JPanel();
+		this.setContentPane(mainPanel);
+		mainPanel.setLayout(new BorderLayout());
+		//this.setPreferredSize(new Dimension(800, 600));
+		this.setResizable(false);
+		
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		mainPanel.setBackground(GraphicalCharter.BACKGROUND);
 		
 		this.createMenu();
-		this.createLeft();
+		this.createRight();
+		
+		BoardPanel board = new BoardPanel(model.getBoard().getWidth(), model.getBoard().getHeight());
+		this.getContentPane().add(board, BorderLayout.CENTER);
 		
 		this.pack();
 	}
@@ -59,13 +73,17 @@ public class WordgameFrame extends JFrame {
 		mFile.add(miQuit);
 	}
 	
-	public void createLeft() {
+	public void createRight() {
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		JList<String> playerList = new JList<String>(listModel);
+		playerList.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
+		playerList.setForeground(GraphicalCharter.REVERSE_TEXT);
+		playerList.setFont(GraphicalCharter.BASIC_FONT);
+		playerList.setPreferredSize(new Dimension(150, 1));
 		
 		PlayerListControl listControl = new PlayerListControl(model, playerList);
 		model.addObserver(listControl);
 		
-		this.add(playerList, BorderLayout.WEST);
+		this.add(playerList, BorderLayout.EAST);
 	}
 }
