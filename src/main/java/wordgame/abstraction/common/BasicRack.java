@@ -7,10 +7,12 @@ import wordgame.abstraction.interfaces.Rack;
 
 public class BasicRack implements Rack {
 	
+	public static final int RACK_SIZE = 7;
+	
 	private List<Character> letters;
 	
 	public BasicRack() {
-		letters = new ArrayList<Character>(7);
+		letters = new ArrayList<Character>(RACK_SIZE);
 	}
 	
 	public BasicRack(int size) {

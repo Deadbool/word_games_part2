@@ -18,7 +18,6 @@ public class BoardPanel extends JPanel {
 
 	public BoardPanel(int rows, int cols) {
 		setLayout(new GridLayout(rows, cols));
-		setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 		setBackground(GraphicalCharter.BACKGROUND);
 		
 		this.rows = rows;
