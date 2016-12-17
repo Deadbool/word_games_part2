@@ -8,11 +8,9 @@ import javax.swing.JLabel;
 
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.common.WordgameException;
-import wordgame.abstraction.decorators.CellDecorator;
 import wordgame.abstraction.decorators.scrabble.Multiplier;
 import wordgame.abstraction.decorators.scrabble.ScrabbleCellDecorator;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
-import wordgame.abstraction.decorators.scrabble.Multiplier.MultiplierType;
 import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.presentation.GraphicalCharter;
@@ -41,7 +39,6 @@ public class BoardControl implements Observer {
 				try {
 					ImageIcon img = null;
 					Cell cell = model.getBoard().getCell(Coordinate.fromRowCol(r, c));
-					String imgName;
 					
 					if (cell.isEmpty()) {
 						if (model instanceof ScrabbleDecorator && r==cells.length/2 && c==cells.length/2) {
@@ -58,7 +55,7 @@ public class BoardControl implements Observer {
 							}
 						}
 					} else {
-						
+						img = GraphicalCharter.getCell(""+cell.getContent());
 					}
 					
 					setCell(r, c, img);
@@ -75,6 +72,7 @@ public class BoardControl implements Observer {
 		switch ((Event) arg) {
 			case NEW_TURN:
 				updateCells();
+				System.err.println("BoardControl::update() receive NEW_TURN");
 				break;
 		}
 	}

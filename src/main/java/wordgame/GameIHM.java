@@ -1,6 +1,9 @@
 package wordgame;
 
+import wordgame.abstraction.common.BasicCell;
+import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
+import wordgame.abstraction.decorators.topword.TopwordDecorator;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.presentation.WordgameFrame;
 
@@ -17,5 +20,7 @@ public class GameIHM {
 		
 		WordgameFrame window = new WordgameFrame(game);
 		window.setVisible(true);
+		
+		game.newTurn();
 	}
 }

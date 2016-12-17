@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Observable;
 
 import wordgame.abstraction.common.Coordinate;
+import wordgame.control.Event;
 
 public abstract class Wordgame extends Observable {
 	public abstract boolean init(String configFile, WordgameFactory fac);
@@ -25,4 +26,10 @@ public abstract class Wordgame extends Observable {
 	
 	public abstract void skipTurn();
 	public abstract boolean isOver();
+	
+	public void newTurn() {
+		this.setChanged();
+		this.notifyObservers(Event.NEW_TURN);
+		System.err.println("BasicWordGame::newTurn() send NEW_TURN");
+	}
 }

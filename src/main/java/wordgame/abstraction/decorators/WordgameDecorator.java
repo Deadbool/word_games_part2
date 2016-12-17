@@ -81,9 +81,6 @@ public abstract class WordgameDecorator extends Wordgame implements WordgameFact
 
 	public void skipTurn() {
 		decoratedWordgame.skipTurn();
-		this.setChanged();
-		this.notifyObservers(Event.NEW_TURN);
-		//System.err.println("BasicWordGame::skipTurn() send NEW_TURN");
 	}
 
 	public boolean isOver() {

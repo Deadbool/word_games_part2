@@ -70,6 +70,7 @@ public class GameTUI {
 			tuiDisplay(game.getCurrentPlayer().getRack());
 			
 			do { // while (turnPlayed == false)
+				game.newTurn();
 				System.out.print("\nWord, X, Y, line/column OR pass => ");
 				String instruction = sc.nextLine();
 				if(instruction.contains("pass")) {
@@ -79,7 +80,7 @@ public class GameTUI {
 				else if(!instruction.isEmpty()){
 					String[] instructionArgs = instruction.split(",");
 					
-					if(instructionArgs.length == 4){
+					if(instructionArgs.length == 4) {
 						String word = instructionArgs[0].trim();
 						char x = instructionArgs[1].trim().charAt(0);
 						int y = Integer.parseInt(instructionArgs[2].trim());

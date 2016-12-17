@@ -1,7 +1,6 @@
 package wordgame.presentation;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -26,6 +25,7 @@ import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.BoardControl;
 import wordgame.control.PlayerListControl;
+import wordgame.control.RackControl;
 
 public class WordgameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -120,17 +120,19 @@ public class WordgameFrame extends JFrame {
 
 	private void createRack(JPanel parent) {
 		JPanel rack = new JPanel();
+		parent.add(rack, BorderLayout.SOUTH);
 		rack.setLayout(new GridLayout(1, BasicRack.RACK_SIZE));
 		rack.setBackground(GraphicalCharter.BACKGROUND);
 		
 		ArrayList<JLabel> tiles = new ArrayList<JLabel>();
 		
 		for (int i=0; i < BasicRack.RACK_SIZE; i++) {
-			tiles.add(new JLabel(GraphicalCharter.resizeImageIcon(GraphicalCharter.getTile("espace"), 50, 50)));
+			tiles.add(new JLabel());
 			rack.add(tiles.get(i));
 		}
-				
-		parent.add(rack, BorderLayout.SOUTH);
+		
+		RackControl rackControl = new RackControl(tiles, model);
+		model.addObserver(rackControl);
 	}
 	
 	private void createRight() {

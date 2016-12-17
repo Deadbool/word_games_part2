@@ -17,7 +17,6 @@ import wordgame.abstraction.interfaces.Player;
 import wordgame.abstraction.interfaces.Rack;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.abstraction.interfaces.WordgameFactory;
-import wordgame.control.Event;
 
 public class BasicWordgame extends Wordgame implements WordgameFactory {
 	
