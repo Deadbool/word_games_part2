@@ -121,7 +121,7 @@ public class GameTUI {
 	}
 	
 	public static void tuiDisplay(Board b) {
-		String[][] dataGrid = b.toArray();
+		String[][] dataGrid = b.toStringArray();
 		//AnsiConsole.out.println(smallBoardString(dataGrid) + "\n");
 		 System.out.println(smallBoardString(dataGrid) + "\n"); // for eclipse dev with ansi color plugin
 	}

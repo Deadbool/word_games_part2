@@ -5,6 +5,7 @@ import wordgame.abstraction.interfaces.Tuple;
 public class Coordinate implements Tuple<Character, Integer> {
 	
 	public static final int A_ASCII_CODE = 65;
+	private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
 	public final char x;
 	public final int y;
@@ -12,6 +13,10 @@ public class Coordinate implements Tuple<Character, Integer> {
 	public Coordinate(char x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public static Coordinate fromRowCol(int row, int col) {
+		return new Coordinate(ALPHABET.charAt(col%ALPHABET.length()), row+1);
 	}
 	
 	public String toString() {

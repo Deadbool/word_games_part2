@@ -36,7 +36,7 @@ public class SquareBoard implements Board {
 		}
 		return false;
 	}
-
+	
 	public Cell getCell(Coordinate c) throws WordgameException {
 		if(!validCoord(c)){
 			throw new WordgameException("Invalid coordinate");
@@ -44,13 +44,13 @@ public class SquareBoard implements Board {
 		return this.grid.get(c.toString());
 	}
 	
-	public String[][] toArray() {
+	public String[][] toStringArray() {
 		String[][] dataGrid = new String[this.size][this.size];
 		
 		for(int x = 0; x < this.size; x++){
 			for(int y = 0; y < this.size; y++) {
 				try {
-					dataGrid[x][y] = this.getCell(new Coordinate((char) (Coordinate.A_ASCII_CODE + x), y+1)).toString();
+					dataGrid[x][y] = this.getCell(Coordinate.fromRowCol(y, x)).toString();
 				} catch (WordgameException e) {
 					e.printStackTrace();
 				}

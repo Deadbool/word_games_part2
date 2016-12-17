@@ -22,7 +22,6 @@ public class GraphicalCharter {
 	public static final Font BASIC_FONT = new Font("Calibri", Font.PLAIN, 24);
 	
 	// Cells
-	public static final ImageIcon EMPTY_CELL = new ImageIcon(IMAGES_FOLDER_PATH + "C_VIDE.gif");
 	public static ImageIcon getCell(String imgSuffix) {
 		return new ImageIcon(IMAGES_FOLDER_PATH + "C_" + imgSuffix.toUpperCase() + ".gif");
 	}

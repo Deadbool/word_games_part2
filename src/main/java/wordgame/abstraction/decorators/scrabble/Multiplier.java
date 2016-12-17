@@ -18,6 +18,10 @@ public class Multiplier implements PointModifier {
 		return this.type;
 	}
 	
+	public int getTimes() {
+		return this.times;
+	}
+	
 	public int apply(int point) {
 		return point * this.times;
 	}

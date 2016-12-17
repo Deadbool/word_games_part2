@@ -23,7 +23,6 @@ public class PlayerListControl implements Observer {
 	}
 
 	public void update(Observable o, Object arg) {
-		
 		switch ((Event) arg) {
 			case NEW_TURN:
 				//System.err.println("PlayerListControl::update() receive NEW_TURN");
@@ -32,7 +31,7 @@ public class PlayerListControl implements Observer {
 		}
 	}
 	
-	public void updateScores() {
+	private void updateScores() {
 		DefaultListModel<String> listModel = (DefaultListModel<String>) this.list.getModel();
 		listModel.clear();
 		
