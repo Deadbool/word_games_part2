@@ -1,7 +1,6 @@
 package wordgame;
 
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
-import wordgame.abstraction.decorators.topword.TopwordDecorator;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.presentation.WordgameFrame;
 

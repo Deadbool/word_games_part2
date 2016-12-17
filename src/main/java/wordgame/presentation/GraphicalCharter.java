@@ -20,6 +20,7 @@ public class GraphicalCharter {
 	
 	// Fonts
 	public static final Font BASIC_FONT = new Font("Calibri", Font.PLAIN, 24);
+	public static final Font BAG_FONT = new Font("Arial", Font.BOLD, 28);
 	
 	// Cells
 	public static ImageIcon getCell(String imgSuffix) {
@@ -35,6 +36,9 @@ public class GraphicalCharter {
 	public static ImageIcon getDraggedTile(String letter) {
 		return new ImageIcon(IMAGES_FOLDER_PATH + "cur_" + letter.toLowerCase() + ".gif");
 	}
+	
+	// Bag
+	public static final ImageIcon BAG = new ImageIcon(IMAGES_FOLDER_PATH + "BAG.png");
 	
 	public static ImageIcon resizeImageIcon(ImageIcon img, int w, int h) {
 		BufferedImage resized = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
