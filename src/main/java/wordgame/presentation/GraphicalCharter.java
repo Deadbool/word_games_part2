@@ -22,6 +22,14 @@ public class GraphicalCharter {
 	public static final Font BASIC_FONT = new Font("Calibri", Font.PLAIN, 24);
 	public static final Font BAG_FONT = new Font("Arial", Font.BOLD, 28);
 	
+	// Buttons
+	public static final ImageIcon BUTTON_PASS = 
+			resizeImageIcon(new ImageIcon(IMAGES_FOLDER_PATH + "PASSER.gif"), 120, 60);
+	public static final ImageIcon BUTTON_CHANGE = 
+			resizeImageIcon(new ImageIcon(IMAGES_FOLDER_PATH + "ECHANGER.gif"), 150, 60);
+	public static final ImageIcon BUTTON_PLAY =
+			resizeImageIcon(new ImageIcon(IMAGES_FOLDER_PATH + "VALIDER.gif"), 120, 60);
+	
 	// Cells
 	public static ImageIcon getCell(String imgSuffix) {
 		return new ImageIcon(IMAGES_FOLDER_PATH + "C_" + imgSuffix.toUpperCase() + ".gif");

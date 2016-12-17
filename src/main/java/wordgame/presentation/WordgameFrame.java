@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -47,8 +48,8 @@ public class WordgameFrame extends JFrame {
 		mainPanel.setBackground(GraphicalCharter.BACKGROUND);
 		
 		createMenu();
-		createCenter();
-		createRight();
+		getContentPane().add(createCenter(), BorderLayout.CENTER);
+		getContentPane().add(createRight(), BorderLayout.EAST);
 		
 		pack();
 		setLocationRelativeTo(null);
@@ -86,18 +87,18 @@ public class WordgameFrame extends JFrame {
 		mFile.add(miQuit);
 	}
 
-	private void createCenter() {
+	private JPanel createCenter() {
 		JPanel center = new JPanel(new BorderLayout());
-		getContentPane().add(center, BorderLayout.CENTER);
 		center.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 		center.setBackground(GraphicalCharter.BACKGROUND);
 		
-		createBoard(center);
+		center.add(createBoard(), BorderLayout.CENTER);
+		center.add(createRack(), BorderLayout.SOUTH);
 		
-		createRack(center);
+		return center;
 	}
 
-	private void createBoard(JPanel parent) {
+	private JPanel createBoard() {
 		int rows = model.getBoard().getHeight();
 		int cols = model.getBoard().getWidth();
 		JPanel board = new JPanel(new GridLayout(rows, cols));
@@ -114,40 +115,90 @@ public class WordgameFrame extends JFrame {
 		
 		BoardControl boardControl = new BoardControl(cells, model);
 		model.addObserver(boardControl);
-		parent.add(board, BorderLayout.CENTER);
 		board.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+		
+		return board;
 	}
 
-	private void createRack(JPanel parent) {
+	private JPanel createRack() {
 		JPanel rack = new JPanel();
-		parent.add(rack, BorderLayout.SOUTH);
 		rack.setLayout(new GridLayout(1, BasicRack.RACK_SIZE));
 		rack.setBackground(GraphicalCharter.BACKGROUND);
 		
 		ArrayList<JLabel> tiles = new ArrayList<JLabel>();
 		
 		for (int i=0; i < BasicRack.RACK_SIZE; i++) {
-			tiles.add(new JLabel());
-			rack.add(tiles.get(i));
+			JLabel tile = new JLabel();
+			tiles.add(tile);
+			rack.add(tile);
+			tile.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		
 		RackControl rackControl = new RackControl(tiles, model);
 		model.addObserver(rackControl);
+		
+		return rack;
 	}
 	
-	private void createRight() {
+	private JPanel createRight() {
 		JPanel right = new JPanel();
-		getContentPane().add(right, BorderLayout.EAST);
 		right.setLayout(new BorderLayout());
 		right.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
 		
-		createPlayerList(right);
-		createBag(right);
+		right.add(createPlayerList(), BorderLayout.NORTH);
+		right.add(createButtons(), BorderLayout.CENTER);
+		right.add(createBag(), BorderLayout.SOUTH);
+		
+		return right;
+	}
+	
+	private JPanel createPlayerList() {
+		JPanel panel = new JPanel();
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		panel.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
+		
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		JList<String> playerList = new JList<String>(listModel);
+		panel.add(playerList);
+		playerList.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
+		playerList.setForeground(GraphicalCharter.REVERSE_TEXT);
+		playerList.setFont(GraphicalCharter.BASIC_FONT);
+		
+		PlayerListControl listControl = new PlayerListControl(model, playerList);
+		model.addObserver(listControl);
+		
+		return panel;
+	}
+	
+	private JPanel createButtons() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
+		
+		panel.add(Box.createVerticalGlue());
+		JButton pass = new JButton(GraphicalCharter.BUTTON_PASS);
+		panel.add(pass);
+		panel.add(Box.createVerticalGlue());
+		pass.setBorder(null);
+		pass.setAlignmentX(CENTER_ALIGNMENT);
+		
+		JButton change = new JButton(GraphicalCharter.BUTTON_CHANGE);
+		panel.add(change);
+		panel.add(Box.createVerticalGlue());
+		change.setBorder(null);
+		change.setAlignmentX(CENTER_ALIGNMENT);
+		
+		JButton play = new JButton(GraphicalCharter.BUTTON_PLAY);
+		panel.add(play);
+		panel.add(Box.createVerticalGlue());
+		play.setBorder(null);
+		play.setAlignmentX(CENTER_ALIGNMENT);
+		
+		return panel;
 	}
 
-	private void createBag(JPanel parent) {
+	private JPanel createBag() {
 		JPanel panel = new JPanel();
-		parent.add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		panel.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -172,23 +223,7 @@ public class WordgameFrame extends JFrame {
 		
 		layer.add(bag, new Integer(0), 0);
 		layer.add(letterCount, new Integer(1), 0);
-	}
-	
-	private void createPlayerList(JPanel parent) {
-		JPanel panel = new JPanel();
-		parent.add(panel, BorderLayout.NORTH);
-		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		panel.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
 		
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		JList<String> playerList = new JList<String>(listModel);
-		panel.add(playerList);
-		playerList.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
-		playerList.setForeground(GraphicalCharter.REVERSE_TEXT);
-		playerList.setFont(GraphicalCharter.BASIC_FONT);
-		
-		PlayerListControl listControl = new PlayerListControl(model, playerList);
-		model.addObserver(listControl);
-		
+		return panel;
 	}
 }
