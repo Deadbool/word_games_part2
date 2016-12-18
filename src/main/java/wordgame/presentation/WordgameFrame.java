@@ -26,6 +26,7 @@ import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.CellControl;
 import wordgame.control.PlayerListControl;
 import wordgame.control.RackControl;
+import wordgame.control.WindowManager;
 
 public class WordgameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -66,8 +67,21 @@ public class WordgameFrame extends JFrame {
 		
 		JMenuItem miNewScrabble = new JMenuItem("Scrabble");
 		miNew.add(miNewScrabble);
+		miNewScrabble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				WindowManager.launchScrabble();
+			}
+		});
+		
 		JMenuItem miNewTopword = new JMenuItem("Topword");
 		miNew.add(miNewTopword);
+		miNewTopword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				WindowManager.launchTopword();
+			}
+		});
 		
 		JMenuItem miLoad = new JMenuItem("Charger une partie...");
 		mFile.addSeparator();

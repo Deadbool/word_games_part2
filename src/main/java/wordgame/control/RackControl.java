@@ -56,7 +56,7 @@ public class RackControl implements Observer, MouseListener {
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Cursor cur = toolkit.createCustomCursor(GraphicalCharter.getCursor(""+getLetter()),
-				new Point(12, 12), getLetter()+" cursor");
+				new Point(1, 1), getLetter()+" cursor");
 		
 		tile.setCursor(cur);
 	}
