@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -24,7 +23,7 @@ import javax.swing.SwingConstants;
 
 import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.interfaces.Wordgame;
-import wordgame.control.BoardControl;
+import wordgame.control.CellControl;
 import wordgame.control.PlayerListControl;
 import wordgame.control.RackControl;
 
@@ -104,17 +103,19 @@ public class WordgameFrame extends JFrame {
 		JPanel board = new JPanel(new GridLayout(rows, cols));
 		board.setBackground(GraphicalCharter.BACKGROUND);
 		
-		JLabel cells[][] = new JLabel[rows][cols];
 		
-		for (int r=0; r < cells.length; r++) {
-			for (int c=0; c < cells[r].length; c++) {
-				cells[r][c] = new JLabel();
-				board.add(cells[r][c]);
+		for (int r=0; r < model.getBoard().getHeight(); r++) {
+			for (int c=0; c < model.getBoard().getWidth(); c++) {
+				JLabel cell = new JLabel();
+				board.add(cell);
+				
+				CellControl cellControl = new CellControl(cell, r, c, model);
+				model.addObserver(cellControl);
+				cell.addMouseListener(cellControl);
 			}
 		}
 		
-		BoardControl boardControl = new BoardControl(cells, model);
-		model.addObserver(boardControl);
+		
 		board.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 		
 		return board;
@@ -124,18 +125,20 @@ public class WordgameFrame extends JFrame {
 		JPanel rack = new JPanel();
 		rack.setLayout(new GridLayout(1, BasicRack.RACK_SIZE));
 		rack.setBackground(GraphicalCharter.BACKGROUND);
-		
-		ArrayList<JLabel> tiles = new ArrayList<JLabel>();
-		
+				
 		for (int i=0; i < BasicRack.RACK_SIZE; i++) {
 			JLabel tile = new JLabel();
-			tiles.add(tile);
 			rack.add(tile);
 			tile.setHorizontalAlignment(SwingConstants.CENTER);
+			
+			RackControl rackControl = new RackControl(tile, i, model);
+			model.addObserver(rackControl);
+			
+			tile.addMouseListener(rackControl);
+			
 		}
 		
-		RackControl rackControl = new RackControl(tiles, model);
-		model.addObserver(rackControl);
+		
 		
 		return rack;
 	}

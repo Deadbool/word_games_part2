@@ -25,7 +25,7 @@ public class PlayerListControl implements Observer {
 	public void update(Observable o, Object arg) {
 		switch ((Event) arg) {
 		case NEW_TURN:
-			System.err.println("PlayerListControl::update() receive NEW_TURN");
+			//System.err.println("PlayerListControl::update() receive NEW_TURN");
 			updateScores();
 			break;
 		}
@@ -36,7 +36,7 @@ public class PlayerListControl implements Observer {
 		listModel.clear();
 		
 		for (Player player : model.getPlayers()) {
-			listModel.addElement((model.getCurrentPlayer().equals(player)?"⇨ ":"")
+			listModel.addElement((model.getCurrentPlayer().equals(player)?"*":"")
 					+ player.getNickname() + " - " + player.getScore());
 		}
 	}

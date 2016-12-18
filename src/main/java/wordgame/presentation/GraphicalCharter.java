@@ -3,7 +3,9 @@ package wordgame.presentation;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -40,9 +42,9 @@ public class GraphicalCharter {
 		return new ImageIcon(IMAGES_FOLDER_PATH + letter.toLowerCase() + ".gif");
 	}
 	
-	// Dragged tiles
-	public static ImageIcon getDraggedTile(String letter) {
-		return new ImageIcon(IMAGES_FOLDER_PATH + "cur_" + letter.toLowerCase() + ".gif");
+	// Cursor (dragged tiles)
+	public static Image getCursor(String letter) {
+		return Toolkit.getDefaultToolkit().getImage(IMAGES_FOLDER_PATH + "cur_" + letter.toLowerCase() + ".gif");
 	}
 	
 	// Bag
