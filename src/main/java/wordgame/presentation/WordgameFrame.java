@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -149,10 +150,7 @@ public class WordgameFrame extends JFrame {
 			model.addObserver(rackControl);
 			
 			tile.addMouseListener(rackControl);
-			
 		}
-		
-		
 		
 		return rack;
 	}
@@ -198,6 +196,11 @@ public class WordgameFrame extends JFrame {
 		panel.add(Box.createVerticalGlue());
 		pass.setBorder(null);
 		pass.setAlignmentX(CENTER_ALIGNMENT);
+		pass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.skipTurn();
+			}
+		});
 		
 		JButton change = new JButton(GraphicalCharter.BUTTON_CHANGE);
 		panel.add(change);

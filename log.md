@@ -8,3 +8,12 @@ Nicolas Guégan - ACDC - Jeu de mots - Partie 2
 * Aménagement du code de base pour s'adapter au modèle PAC
 * Ajout d'une barre de menu
 * Ajout de la liste des joueurs et son contrôleur
+
+## 21/12/2016
+* Création de tous les composants de l'IHM :
+	- Board
+	- Rack
+	- Menu
+	- Liste des joueurs + score
+* Controle de la liste des joueurs et de leur score
+* Lettres draggable (mécanisme obsolète)

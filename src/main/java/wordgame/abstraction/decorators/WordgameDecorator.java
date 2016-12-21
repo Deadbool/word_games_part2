@@ -81,6 +81,7 @@ public abstract class WordgameDecorator extends Wordgame implements WordgameFact
 
 	public void skipTurn() {
 		decoratedWordgame.skipTurn();
+		newTurn();
 	}
 
 	public boolean isOver() {

@@ -30,6 +30,6 @@ public abstract class Wordgame extends Observable {
 	public void newTurn() {
 		this.setChanged();
 		this.notifyObservers(Event.NEW_TURN);
-		System.err.println("BasicWordGame::newTurn() send NEW_TURN");
+		System.err.println("Wordgame::newTurn() send NEW_TURN");
 	}
 }
