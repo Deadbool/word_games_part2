@@ -1,5 +1,6 @@
 package wordgame.control;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -8,10 +9,14 @@ import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.presentation.GraphicalCharter;
+import wordgame.presentation.RCell;
 
 public class RackControl implements Observer, MouseListener {
 	
@@ -21,11 +26,15 @@ public class RackControl implements Observer, MouseListener {
 	private int index;
 	private JLabel tile;
 	
+	private JFrame frame;
+	private JPanel board;
 	
-	public RackControl(JLabel tile, int index, Wordgame model) {
+	public RackControl(JLabel tile, int index, Wordgame model, JPanel board, JFrame frame) {
 		this.tile = tile;
 		this.index = index;
 		this.model = model;
+		this.frame = frame;
+		this.board = board;
 		updateTile();
 	}
 
@@ -56,14 +65,30 @@ public class RackControl implements Observer, MouseListener {
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Cursor cur = toolkit.createCustomCursor(GraphicalCharter.getCursor(""+getLetter()),
-				new Point(12, 12), getLetter()+" cursor");
+				new Point(1, 1), getLetter()+" cursor");
 		
-		tile.setCursor(cur);
+		frame.setCursor(cur);
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		updateTile();
-		tile.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		
+		int cellX = e.getXOnScreen() - (frame.getX() + board.getX());
+		int cellY = e.getYOnScreen() - (frame.getY() + board.getY()) - RCell.CELL_SIZE;
+		
+		try {
+			RCell targetCell = (RCell) (board.findComponentAt(cellX, cellY));
+			
+			if (targetCell.isEmpty()) {
+				targetCell.setContent(getLetter());
+			} else {
+				updateTile();
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			updateTile();
+		}
 	}
 
 	public void mouseEntered(MouseEvent e) {

@@ -36,7 +36,7 @@ public class PlayerListControl implements Observer {
 		listModel.clear();
 		
 		for (Player player : model.getPlayers()) {
-			listModel.addElement((model.getCurrentPlayer().equals(player)?"*":"")
+			listModel.addElement((model.getCurrentPlayer().equals(player)?"> ":"")
 					+ player.getNickname() + " - " + player.getScore());
 		}
 	}

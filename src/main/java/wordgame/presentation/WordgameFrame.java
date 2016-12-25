@@ -34,6 +34,7 @@ public class WordgameFrame extends JFrame {
 	
 	// Model
 	private Wordgame model;
+	private JPanel boardPanel;
 	
 	public WordgameFrame(Wordgame game) {
 		super("Wordgame");
@@ -117,19 +118,19 @@ public class WordgameFrame extends JFrame {
 		int cols = model.getBoard().getWidth();
 		JPanel board = new JPanel(new GridLayout(rows, cols));
 		board.setBackground(GraphicalCharter.BACKGROUND);
+		this.boardPanel = board;
 		
 		
 		for (int r=0; r < model.getBoard().getHeight(); r++) {
 			for (int c=0; c < model.getBoard().getWidth(); c++) {
-				JLabel cell = new JLabel();
+				RCell cell = new RCell();
 				board.add(cell);
 				
-				CellControl cellControl = new CellControl(cell, r, c, model);
+				CellControl cellControl = new CellControl(cell, r, c, model, boardPanel, this);
 				model.addObserver(cellControl);
 				cell.addMouseListener(cellControl);
 			}
-		}
-		
+		}	
 		
 		board.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 		
@@ -146,7 +147,7 @@ public class WordgameFrame extends JFrame {
 			rack.add(tile);
 			tile.setHorizontalAlignment(SwingConstants.CENTER);
 			
-			RackControl rackControl = new RackControl(tile, i, model);
+			RackControl rackControl = new RackControl(tile, i, model, this.boardPanel, this);
 			model.addObserver(rackControl);
 			
 			tile.addMouseListener(rackControl);
@@ -159,6 +160,7 @@ public class WordgameFrame extends JFrame {
 		JPanel right = new JPanel();
 		right.setLayout(new BorderLayout());
 		right.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
+		right.setPreferredSize(new Dimension(230, 500));
 		
 		right.add(createPlayerList(), BorderLayout.NORTH);
 		right.add(createButtons(), BorderLayout.CENTER);
