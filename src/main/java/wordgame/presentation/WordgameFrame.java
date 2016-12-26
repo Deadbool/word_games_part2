@@ -26,6 +26,7 @@ import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.BagControl;
 import wordgame.control.BoardControl;
 import wordgame.control.CellControl;
 import wordgame.control.PlayerListControl;
@@ -283,6 +284,7 @@ public class WordgameFrame extends JFrame {
 		letterCount.setBounds(0, 58, 120, 62);
 		letterCount.setHorizontalAlignment(SwingConstants.CENTER);
 		letterCount.setVerticalAlignment(SwingConstants.TOP);
+		model.addObserver(new BagControl(letterCount));
 		
 		layer.add(bag, new Integer(0), 0);
 		layer.add(letterCount, new Integer(1), 0);
