@@ -108,8 +108,12 @@ public class CellControl implements Observer, MouseListener {
 				RCell targetCell = (RCell) (board.findComponentAt(cellX, cellY));
 				
 				if (targetCell.isEmpty()) {
+					BoardControl.GET.removeCell(cell);
+					
 					targetCell.setFromRCell(cell);
 					fromModel();
+					
+					BoardControl.GET.addCell(targetCell);
 				}
 				
 			} catch (Exception ex) {}

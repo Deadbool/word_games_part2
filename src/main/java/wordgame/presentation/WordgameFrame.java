@@ -137,6 +137,7 @@ public class WordgameFrame extends JFrame {
 		
 		board.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 		
+		BoardControl.GET.setModel(model);
 		model.addObserver(BoardControl.GET);
 		
 		return board;

@@ -81,6 +81,7 @@ public class RackControl implements Observer, MouseListener {
 			
 			if (targetCell.isEmpty()) {
 				targetCell.setContent(getLetter());
+				BoardControl.GET.addCell(targetCell);
 			} else {
 				updateTile();
 			}
