@@ -18,10 +18,13 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import wordgame.abstraction.common.BasicRack;
+import wordgame.abstraction.common.Coordinate;
+import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.BoardControl;
 import wordgame.control.CellControl;
@@ -234,8 +237,23 @@ public class WordgameFrame extends JFrame {
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BoardControl board = BoardControl.GET;
-				model.putWord(board.getWordPosition(), board.getWordDirection(), board.getWord());
-				model.skipTurn();
+				Coordinate pos = board.getWordPosition();
+				Direction dir = board.getWordDirection();
+				String word = board.getWord();
+				
+				if (model.validMove(pos, dir, word)) {
+					if (model.putWord(pos, dir, word)) {
+						model.getCurrentPlayer().addPoint(model.getScoreForMove(pos, dir, word));
+						model.fillCurrentPlayerRack();
+						model.skipTurn();
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"No more place on this cell.");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+					    "This word is not available or cannot be placed there.");
+				}
 			}
 		});
 		

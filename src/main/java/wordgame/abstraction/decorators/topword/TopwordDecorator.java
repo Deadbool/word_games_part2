@@ -77,6 +77,9 @@ public class TopwordDecorator extends WordgameDecorator {
 	}
 	
 	public boolean validMove(Coordinate start, Direction direction, String word) {
+		if (!Dictionnary.DICO.contain(word))
+			return false;
+		
 		if(firstMoveDone == false){
 			return validFirstMove(start, direction, word.length());
 		}
@@ -86,9 +89,6 @@ public class TopwordDecorator extends WordgameDecorator {
 	}
 	
 	public boolean putWord(Coordinate start, Direction direction, String word) {
-		if (!Dictionnary.DICO.contain(word))
-			return false;
-		
 		Coordinate currentCoord = start;
 		for( int i = 0; i < word.length(); i++) {
 			try {
