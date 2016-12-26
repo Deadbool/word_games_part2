@@ -34,7 +34,7 @@ public class BoardControl implements Observer {
 	public void addCell(RCell cell) {
 		wordCells.add(cell);
 		sortCells();
-		System.out.println("Word on board: " + getWord());
+		//System.out.println("Word on board: " + getWord());
 	}
 	
 	public void removeCell(RCell cell) {

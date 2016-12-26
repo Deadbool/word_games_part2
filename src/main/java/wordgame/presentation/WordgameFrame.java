@@ -29,6 +29,8 @@ import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.BagControl;
 import wordgame.control.BoardControl;
 import wordgame.control.CellControl;
+import wordgame.control.ChangeButtonControl;
+import wordgame.control.PlayButtonControl;
 import wordgame.control.PlayerListControl;
 import wordgame.control.RackControl;
 import wordgame.control.WindowManager;
@@ -151,20 +153,21 @@ public class WordgameFrame extends JFrame {
 		rack.setBackground(GraphicalCharter.BACKGROUND);
 						
 		for (int i=0; i < BasicRack.RACK_SIZE; i++) {
-			JLabel tile = new JLabel();
+			RTile tile = new RTile(i);
 			rack.add(tile);
 			tile.setHorizontalAlignment(SwingConstants.CENTER);
 			
-			RackControl rackControl = new RackControl(tile, i, model, this.boardPanel, this);
+			RackControl rackControl = new RackControl(tile, model, this.boardPanel, this);
 			model.addObserver(rackControl);
 			
 			tile.addMouseListener(rackControl);
 		}
 		
 		JButton resetRack = new JButton(GraphicalCharter.resizeImageIcon(GraphicalCharter.RELOAD,
-				RackControl.TILE_SIZE, RackControl.TILE_SIZE));
+				RTile.TILE_SIZE, RTile.TILE_SIZE));
 		resetRack.setBorder(null);
-		resetRack.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
+		resetRack.setBackground(GraphicalCharter.BACKGROUND);
+		resetRack.setFocusable(false);
 		resetRack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.newTurn();				
@@ -229,34 +232,14 @@ public class WordgameFrame extends JFrame {
 		panel.add(Box.createVerticalGlue());
 		change.setBorder(null);
 		change.setAlignmentX(CENTER_ALIGNMENT);
+		change.addActionListener(new ChangeButtonControl(change, model, this));
 		
 		JButton play = new JButton(GraphicalCharter.BUTTON_PLAY);
 		panel.add(play);
 		panel.add(Box.createVerticalGlue());
 		play.setBorder(null);
 		play.setAlignmentX(CENTER_ALIGNMENT);
-		play.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BoardControl board = BoardControl.GET;
-				Coordinate pos = board.getWordPosition();
-				Direction dir = board.getWordDirection();
-				String word = board.getWord();
-				
-				if (model.validMove(pos, dir, word)) {
-					if (model.putWord(pos, dir, word)) {
-						model.getCurrentPlayer().addPoint(model.getScoreForMove(pos, dir, word));
-						model.fillCurrentPlayerRack();
-						model.skipTurn();
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"No more place on this cell.");
-					}
-				} else {
-					JOptionPane.showMessageDialog(null,
-					    "This word is not available or cannot be placed there.");
-				}
-			}
-		});
+		play.addActionListener(new PlayButtonControl(model, this));
 		
 		return panel;
 	}

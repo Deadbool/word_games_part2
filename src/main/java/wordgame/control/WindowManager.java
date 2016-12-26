@@ -1,14 +1,18 @@
 package wordgame.control;
 
+import javax.swing.JFrame;
+
 import wordgame.GameTUI;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
 import wordgame.abstraction.decorators.topword.TopwordDecorator;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.presentation.ChangeLettersDialog;
 import wordgame.presentation.WordgameFrame;
 
 public class WindowManager {
 	
 	private static WordgameFrame frame;
+	private static ChangeLettersDialog changeLettersDialog = new ChangeLettersDialog();
 	
 	public static void launchScrabble() {
 		Wordgame game = ScrabbleDecorator.FACTORY.gameFactory();
@@ -38,5 +42,10 @@ public class WindowManager {
 		
 		frame = new WordgameFrame(game);
 		frame.setVisible(true);
+	}
+	
+	public static void showChangeLettersDialog(Wordgame model, JFrame parent) {
+		changeLettersDialog.init(model, parent);
+		changeLettersDialog.setVisible(true);
 	}
 }

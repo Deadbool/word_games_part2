@@ -25,31 +25,31 @@ public class RCell extends JLabel {
 	
 	public void setContent(char let) {
 		letter = let;
-		updateIcon(GraphicalCharter.getCell(let+""));
+		setCellIcon(GraphicalCharter.getCell(let+""));
 	}
 	
 	public void setContent(Multiplier multi) {
 		letter = EMPTY_LETTER;
-		updateIcon(GraphicalCharter.getCell(multi.getType().toString()+"_COUNT_"+multi.getTimes()));
+		setCellIcon(GraphicalCharter.getCell(multi.getType().toString()+"_COUNT_"+multi.getTimes()));
 	}
 	
 	public void setEmpty() {
 		letter = EMPTY_LETTER;
-		updateIcon(GraphicalCharter.getCell("VIDE"));
+		setCellIcon(GraphicalCharter.getCell("VIDE"));
 	}
 	
 	public void setCentral() {
 		letter = EMPTY_LETTER;
-		updateIcon(GraphicalCharter.getCell("CENTRALE"));
+		setCellIcon(GraphicalCharter.getCell("CENTRALE"));
 	}
 	
-	private void updateIcon(ImageIcon img) {
-		setIcon(GraphicalCharter.resizeImageIcon(img, CELL_SIZE, CELL_SIZE));
+	private void setCellIcon(ImageIcon icon) {
+		setIcon(GraphicalCharter.resizeImageIcon(icon, CELL_SIZE, CELL_SIZE));
 	}
 	
 	public void setFromRCell(RCell cell) {
 		letter = cell.letter;
-		updateIcon((ImageIcon) cell.getIcon()); 
+		setCellIcon((ImageIcon) cell.getIcon()); 
 	}
 	
 	public boolean isEmpty() {

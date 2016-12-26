@@ -22,6 +22,7 @@ public class GraphicalCharter {
 	
 	// Fonts
 	public static final Font BASIC_FONT = new Font("Calibri", Font.PLAIN, 24);
+	public static final Font BUTTON_FONT = new Font("Calibri", Font.PLAIN, 16);
 	public static final Font BAG_FONT = new Font("Arial", Font.BOLD, 28);
 	
 	// Buttons
@@ -54,6 +55,9 @@ public class GraphicalCharter {
 	public static final ImageIcon RELOAD = new ImageIcon(IMAGES_FOLDER_PATH + "reload.png");
 	
 	public static ImageIcon resizeImageIcon(ImageIcon img, int w, int h) {
+		if (img == null)
+			return null;
+		
 		BufferedImage resized = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D graphics = resized.createGraphics();
 		

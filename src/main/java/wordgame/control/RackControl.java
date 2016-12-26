@@ -17,47 +17,44 @@ import javax.swing.JPanel;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.RCell;
+import wordgame.presentation.RTile;
 
 public class RackControl implements Observer, MouseListener {
-	
-	public static final int TILE_SIZE = 50;
 
 	private Wordgame model;
-	private int index;
-	private JLabel tile;
+	
+	private RTile tile;
 	
 	private JFrame frame;
 	private JPanel board;
 	
-	public RackControl(JLabel tile, int index, Wordgame model, JPanel board, JFrame frame) {
+	public RackControl(RTile tile, Wordgame model, JPanel board, JFrame frame) {
 		this.tile = tile;
-		this.index = index;
 		this.model = model;
 		this.frame = frame;
 		this.board = board;
-		updateTile();
+		fromModel();
 	}
 
 	public void update(Observable o, Object arg) {
 		switch ((Event) arg) {
 		case NEW_TURN:
-			updateTile();
+			fromModel();
 			//System.err.println("RackControl::update() receive NEW_TURN");
 			break;
 		}	
 	}
 	
-	public void updateTile() {
-		if (model.getCurrentPlayer().getRack().size() > index) {
-			tile.setIcon(GraphicalCharter.resizeImageIcon(GraphicalCharter.getTile(
-					""+getLetter()), TILE_SIZE, TILE_SIZE));
+	public void fromModel() {
+		if (model.getCurrentPlayer().getRack().size() > tile.getIndex()) {
+			tile.setContent(getLetterFromModel());
 		} else {
-			tile.setIcon(null);
+			tile.setEmpty();
 		}
 	}
 	
-	public char getLetter() {
-		return model.getCurrentPlayer().getRack().getContent().get(index).charValue();
+	private char getLetterFromModel() {
+		return model.getCurrentPlayer().getRack().getContent().get(tile.getIndex()).charValue();
 	}
 
 	public void mouseClicked(MouseEvent e) {
@@ -68,8 +65,8 @@ public class RackControl implements Observer, MouseListener {
 		tile.setIcon(null);
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Cursor cur = toolkit.createCustomCursor(GraphicalCharter.getCursor(""+getLetter()),
-				new Point(1, 1), getLetter()+" cursor");
+		Cursor cur = toolkit.createCustomCursor(GraphicalCharter.getCursor(""+getLetterFromModel()),
+				new Point(1, 1), getLetterFromModel()+" cursor");
 		
 		frame.setCursor(cur);
 	}
@@ -84,14 +81,14 @@ public class RackControl implements Observer, MouseListener {
 			RCell targetCell = (RCell) (board.findComponentAt(cellX, cellY));
 			
 			if (targetCell.isEmpty()) {
-				targetCell.setContent(getLetter());
+				targetCell.setContent(getLetterFromModel());
 				BoardControl.GET.addCell(targetCell);
 			} else {
-				updateTile();
+				fromModel();
 			}
 			
 		} catch (Exception ex) {
-			updateTile();
+			fromModel();
 		}
 	}
 
