@@ -84,11 +84,7 @@ public class BasicWordgame extends Wordgame implements WordgameFactory {
 		// Create dico
 		String dicoFile = "/" + config.get("dictionnary").getAsString();
 		dicoFile = BasicWordgame.class.getResource(dicoFile).getPath();
-		try {
-			dico = new Dictionnary(dicoFile);
-		} catch (FileNotFoundException e) {
-			return false;
-		}
+		dico = new Dictionnary(dicoFile);
 		
 		// Create letter bag
 		JsonArray alphabetConf = config.get("letters").getAsJsonArray();

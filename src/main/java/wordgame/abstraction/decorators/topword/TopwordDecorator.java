@@ -3,6 +3,7 @@ package wordgame.abstraction.decorators.topword;
 import wordgame.abstraction.common.BasicCell;
 import wordgame.abstraction.common.BasicWordgame;
 import wordgame.abstraction.common.Coordinate;
+import wordgame.abstraction.common.Dictionnary;
 import wordgame.abstraction.common.SquareBoard;
 import wordgame.abstraction.common.WordgameException;
 import wordgame.abstraction.decorators.WordgameDecorator;
@@ -85,6 +86,9 @@ public class TopwordDecorator extends WordgameDecorator {
 	}
 	
 	public boolean putWord(Coordinate start, Direction direction, String word) {
+		if (!Dictionnary.DICO.contain(word))
+			return false;
+		
 		Coordinate currentCoord = start;
 		for( int i = 0; i < word.length(); i++) {
 			try {

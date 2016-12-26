@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -35,7 +34,6 @@ public class WordgameFrame extends JFrame {
 	
 	// Model
 	private Wordgame model;
-	private JPanel rackPanel;
 	private JPanel boardPanel;
 	
 	public WordgameFrame(Wordgame game) {
@@ -233,6 +231,13 @@ public class WordgameFrame extends JFrame {
 		panel.add(Box.createVerticalGlue());
 		play.setBorder(null);
 		play.setAlignmentX(CENTER_ALIGNMENT);
+		play.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BoardControl board = BoardControl.GET;
+				model.putWord(board.getWordPosition(), board.getWordDirection(), board.getWord());
+				model.skipTurn();
+			}
+		});
 		
 		return panel;
 	}

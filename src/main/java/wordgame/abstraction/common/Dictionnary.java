@@ -6,25 +6,34 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
+import wordgame.GameTUI;
+
 public class Dictionnary {
+	
+	public static final Dictionnary DICO = new Dictionnary(GameTUI.class.getResource("/Dico.txt").getPath());
 	
 	private Set<String> words;
 	
-	public Dictionnary(String fileName) throws FileNotFoundException {
+	public Dictionnary(String fileName) {
 		this.words = new TreeSet<String>();
 		File fileDic = new File(fileName);
-		Scanner scDic = new Scanner(fileDic);
-		while (scDic.hasNextLine()) {
-			String w = scDic.nextLine();
-			if (!w.isEmpty()) {
-				 words.add(w);
-			} 
+		Scanner scDic;
+		try {
+			scDic = new Scanner(fileDic);
+			while (scDic.hasNextLine()) {
+				String w = scDic.nextLine();
+				if (!w.isEmpty()) {
+					 words.add(w.toUpperCase());
+				} 
+			}
+			scDic.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		scDic.close();
 	}
 	
 	public boolean contain(String word) {
-		return words.contains(word);
+		return words.contains(word.toUpperCase());
 	}
 	
 }

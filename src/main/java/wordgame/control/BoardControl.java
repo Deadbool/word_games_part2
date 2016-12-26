@@ -33,11 +33,21 @@ public class BoardControl implements Observer {
 	
 	public void addCell(RCell cell) {
 		wordCells.add(cell);
+		sortCells();
 		System.out.println("Word on board: " + getWord());
 	}
 	
 	public void removeCell(RCell cell) {
 		wordCells.remove(cell);
+		sortCells();
+	}
+	
+	private void sortCells() {
+		wordCells.sort(new Comparator<RCell>() {
+			public int compare(RCell o1, RCell o2) {
+				return (o1.getRow() + o1.getCol() > o2.getRow() + o2.getCol()) ? 1 : -1;
+			}
+		});
 	}
 	
 	public void update(Observable o, Object arg) {
@@ -48,7 +58,7 @@ public class BoardControl implements Observer {
 		}
 	}
 	
-	public Direction getDirection() {
+	public Direction getWordDirection() {
 		if (wordCells.size() == 0)
 			return null;
 		else if (wordCells.size() == 1)
@@ -80,16 +90,9 @@ public class BoardControl implements Observer {
 
 	public String getWord() {
 		String word = "";
-		Direction dir = getDirection();
+		Direction dir = getWordDirection();
 		
 		if (dir != null) {
-			wordCells.sort(new Comparator<RCell>() {
-				public int compare(RCell o1, RCell o2) {
-					return (o1.getRow() + o1.getCol() > o2.getRow() + o2.getCol()) ? 1 : -1;
-				}
-			});
-			
-			
 			if (dir == Direction.LINE) {
 				int startPos =  wordCells.get(0).getCol();
 				int offset = 0;
@@ -138,5 +141,13 @@ public class BoardControl implements Observer {
 		}
 		
 		return word;
+	}
+	
+	public Coordinate getWordPosition() {
+		if (wordCells.size() == 0)
+			return null;
+		
+		RCell origin = wordCells.get(0);
+		return Coordinate.fromRowCol(origin.getRow(), origin.getCol());
 	}
 }

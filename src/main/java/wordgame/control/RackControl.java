@@ -48,8 +48,12 @@ public class RackControl implements Observer, MouseListener {
 	}
 	
 	public void updateTile() {
-		tile.setIcon(GraphicalCharter.resizeImageIcon(GraphicalCharter.getTile(
-			""+getLetter()), TILE_SIZE, TILE_SIZE));
+		if (model.getCurrentPlayer().getRack().size() > index) {
+			tile.setIcon(GraphicalCharter.resizeImageIcon(GraphicalCharter.getTile(
+					""+getLetter()), TILE_SIZE, TILE_SIZE));
+		} else {
+			tile.setIcon(null);
+		}
 	}
 	
 	public char getLetter() {
