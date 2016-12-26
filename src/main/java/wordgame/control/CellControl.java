@@ -25,8 +25,6 @@ import wordgame.presentation.RCell;
 
 public class CellControl implements Observer, MouseListener {
 	
-	private int row;
-	private int col;
 	private RCell cell;
 	private Wordgame model;
 	
@@ -35,11 +33,9 @@ public class CellControl implements Observer, MouseListener {
 	
 	private boolean dragging;
 
-	public CellControl(RCell cell, int row, int col, Wordgame model, JPanel board, JFrame frame) {
+	public CellControl(RCell cell, Wordgame model, JPanel board, JFrame frame) {
 		this.model = model;
 		this.cell = cell;
-		this.row = row;
-		this.col = col;
 		this.frame = frame;
 		this.board = board;
 		
@@ -50,10 +46,10 @@ public class CellControl implements Observer, MouseListener {
 	
 	private void fromModel() {
 		try {
-			Cell modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row, col));
+			Cell modelCell = model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow(), cell.getCol()));
 			
 			if (modelCell.isEmpty()) {
-				if (model instanceof ScrabbleDecorator && row==7 && col==7) {
+				if (model instanceof ScrabbleDecorator && cell.getRow()==7 && cell.getCol()==7) {
 					cell.setCentral();
 				} else {
 					if (modelCell instanceof ScrabbleCellDecorator &&
@@ -116,9 +112,7 @@ public class CellControl implements Observer, MouseListener {
 					fromModel();
 				}
 				
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
+			} catch (Exception ex) {}
 		}
 	}
 

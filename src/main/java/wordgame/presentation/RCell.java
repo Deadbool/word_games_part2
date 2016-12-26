@@ -1,5 +1,7 @@
 package wordgame.presentation;
 
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -8,13 +10,16 @@ import wordgame.abstraction.decorators.scrabble.Multiplier;
 public class RCell extends JLabel {
 	private static final long serialVersionUID = 1L;
 	
-	public static final int CELL_SIZE = 40;
-
+	public static int CELL_SIZE = 45;
 	private static final char EMPTY_LETTER = ' ';
 	
+	private int row;
+	private int col;
 	private char letter;
 	
-	public RCell () {
+	public RCell (int row, int col) {
+		this.row = row;
+		this.col = col;
 		setEmpty();
 	}
 	
@@ -55,4 +60,11 @@ public class RCell extends JLabel {
 		return letter;
 	}
 	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getCol() {
+		return col;
+	}
 }

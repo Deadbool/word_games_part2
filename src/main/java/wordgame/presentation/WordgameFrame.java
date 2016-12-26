@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 
 import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.BoardControl;
 import wordgame.control.CellControl;
 import wordgame.control.PlayerListControl;
 import wordgame.control.RackControl;
@@ -34,6 +35,7 @@ public class WordgameFrame extends JFrame {
 	
 	// Model
 	private Wordgame model;
+	private JPanel rackPanel;
 	private JPanel boardPanel;
 	
 	public WordgameFrame(Wordgame game) {
@@ -44,7 +46,7 @@ public class WordgameFrame extends JFrame {
 		JPanel mainPanel = new JPanel();
 		setContentPane(mainPanel);
 		mainPanel.setLayout(new BorderLayout());
-		//setResizable(false);
+		setResizable(false);
 		
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		mainPanel.setBackground(GraphicalCharter.BACKGROUND);
@@ -116,17 +118,18 @@ public class WordgameFrame extends JFrame {
 	private JPanel createBoard() {
 		int rows = model.getBoard().getHeight();
 		int cols = model.getBoard().getWidth();
-		JPanel board = new JPanel(new GridLayout(rows, cols));
+		
+		GridLayout boardLayout = new GridLayout(rows, cols);
+		JPanel board = new JPanel(boardLayout);
 		board.setBackground(GraphicalCharter.BACKGROUND);
 		this.boardPanel = board;
 		
-		
 		for (int r=0; r < model.getBoard().getHeight(); r++) {
 			for (int c=0; c < model.getBoard().getWidth(); c++) {
-				RCell cell = new RCell();
+				RCell cell = new RCell(r, c);
 				board.add(cell);
 				
-				CellControl cellControl = new CellControl(cell, r, c, model, boardPanel, this);
+				CellControl cellControl = new CellControl(cell, model, boardPanel, this);
 				model.addObserver(cellControl);
 				cell.addMouseListener(cellControl);
 			}
@@ -134,14 +137,16 @@ public class WordgameFrame extends JFrame {
 		
 		board.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 		
+		model.addObserver(BoardControl.GET);
+		
 		return board;
 	}
 
 	private JPanel createRack() {
 		JPanel rack = new JPanel();
-		rack.setLayout(new GridLayout(1, BasicRack.RACK_SIZE));
+		rack.setLayout(new GridLayout(1, BasicRack.RACK_SIZE + 1));
 		rack.setBackground(GraphicalCharter.BACKGROUND);
-				
+						
 		for (int i=0; i < BasicRack.RACK_SIZE; i++) {
 			JLabel tile = new JLabel();
 			rack.add(tile);
@@ -152,6 +157,18 @@ public class WordgameFrame extends JFrame {
 			
 			tile.addMouseListener(rackControl);
 		}
+		
+		JButton resetRack = new JButton(GraphicalCharter.resizeImageIcon(GraphicalCharter.RELOAD,
+				RackControl.TILE_SIZE, RackControl.TILE_SIZE));
+		resetRack.setBorder(null);
+		resetRack.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
+		resetRack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.newTurn();				
+			}
+		});
+		
+		rack.add(resetRack);
 		
 		return rack;
 	}

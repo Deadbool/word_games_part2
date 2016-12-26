@@ -20,7 +20,7 @@ import wordgame.presentation.RCell;
 
 public class RackControl implements Observer, MouseListener {
 	
-	private static final int TILE_SIZE = 50;
+	public static final int TILE_SIZE = 50;
 
 	private Wordgame model;
 	private int index;
@@ -86,7 +86,6 @@ public class RackControl implements Observer, MouseListener {
 			}
 			
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			updateTile();
 		}
 	}

@@ -50,6 +50,9 @@ public class GraphicalCharter {
 	// Bag
 	public static final ImageIcon BAG = new ImageIcon(IMAGES_FOLDER_PATH + "BAG.png");
 	
+	// Reload
+	public static final ImageIcon RELOAD = new ImageIcon(IMAGES_FOLDER_PATH + "reload.png");
+	
 	public static ImageIcon resizeImageIcon(ImageIcon img, int w, int h) {
 		BufferedImage resized = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D graphics = resized.createGraphics();
