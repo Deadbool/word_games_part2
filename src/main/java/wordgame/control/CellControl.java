@@ -21,7 +21,7 @@ import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
 import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.presentation.GraphicalCharter;
-import wordgame.presentation.RCell;
+import wordgame.presentation.components.RCell;
 
 public class CellControl implements Observer, MouseListener {
 	

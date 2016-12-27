@@ -10,7 +10,7 @@ import wordgame.abstraction.common.WordgameException;
 import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
-import wordgame.presentation.RCell;
+import wordgame.presentation.components.RCell;
 
 public class BoardControl implements Observer {
 	

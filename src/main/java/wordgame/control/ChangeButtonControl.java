@@ -16,18 +16,16 @@ import wordgame.abstraction.interfaces.Wordgame;
 
 public class ChangeButtonControl implements ActionListener, Observer {
 	
-	private JFrame frame;
 	private Wordgame model;
 	private JButton button;
 	
-	public ChangeButtonControl(JButton button, Wordgame model, JFrame frame) {
+	public ChangeButtonControl(JButton button, Wordgame model) {
 		this.button = button;
 		this.model = model;
-		this.frame = frame;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		WindowManager.showChangeLettersDialog(model, frame);
+		WindowManager.CHANGE_LETTERS_DIALOG.launch(model);
 	}
 
 	public void update(Observable o, Object arg) {

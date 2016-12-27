@@ -3,7 +3,7 @@ package wordgame.control;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import wordgame.presentation.ChangeLettersDialog;
+import wordgame.presentation.dialogs.ChangeLettersDialog;
 
 public class ChangeLettersTileControl implements MouseListener {
 	

@@ -6,13 +6,18 @@ import wordgame.GameTUI;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
 import wordgame.abstraction.decorators.topword.TopwordDecorator;
 import wordgame.abstraction.interfaces.Wordgame;
-import wordgame.presentation.ChangeLettersDialog;
-import wordgame.presentation.WordgameFrame;
+import wordgame.presentation.dialogs.ChangeLettersDialog;
+import wordgame.presentation.dialogs.CreatePlayerDialog;
+import wordgame.presentation.frames.CreateGameFrame;
+import wordgame.presentation.frames.WordgameFrame;
 
 public class WindowManager {
 	
-	private static WordgameFrame frame;
-	private static ChangeLettersDialog changeLettersDialog = new ChangeLettersDialog();
+	public static WordgameFrame WORDGAME_FRAME;
+	public static final CreateGameFrame CREATE_GAME_FRAME = new CreateGameFrame();
+	
+	public static final ChangeLettersDialog CHANGE_LETTERS_DIALOG = new ChangeLettersDialog();
+	public static final CreatePlayerDialog CREATE_PLAYER_DIALOG = new CreatePlayerDialog();
 	
 	public static void launchScrabble() {
 		Wordgame game = ScrabbleDecorator.FACTORY.gameFactory();
@@ -25,8 +30,8 @@ public class WindowManager {
 		
 		game.newTurn();
 		
-		frame = new WordgameFrame(game);
-		frame.setVisible(true);
+		/*wordgameFrame = new WordgameFrame(game);
+		wordgameFrame.setVisible(true);*/
 	}
 	
 	public static void launchTopword() {
@@ -40,12 +45,7 @@ public class WindowManager {
 		
 		game.newTurn();
 		
-		frame = new WordgameFrame(game);
-		frame.setVisible(true);
-	}
-	
-	public static void showChangeLettersDialog(Wordgame model, JFrame parent) {
-		changeLettersDialog.init(model, parent);
-		changeLettersDialog.setVisible(true);
+		/*wordgameFrame = new WordgameFrame(game);
+		wordgameFrame.setVisible(true);*/
 	}
 }

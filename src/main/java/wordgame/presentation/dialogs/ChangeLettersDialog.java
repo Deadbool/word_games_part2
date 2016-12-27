@@ -1,4 +1,4 @@
-package wordgame.presentation;
+package wordgame.presentation.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,18 +22,21 @@ import wordgame.abstraction.common.WordgameException;
 import wordgame.abstraction.interfaces.Rack;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.ChangeLettersTileControl;
+import wordgame.presentation.GraphicalCharter;
+import wordgame.presentation.components.RButton;
+import wordgame.presentation.components.RTile;
 
 public class ChangeLettersDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	
 	private Wordgame model;
-	private JButton validate;
+	private RButton validate;
 	private ArrayList<RTile> tiles;
 	private int selectedCount;
 	private ArrayList<Boolean> selected;
 	
 	public ChangeLettersDialog() {
-		this.setTitle("Change letters");
+		this.setTitle("Echanger des lettres");
 		this.setModal(true);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
@@ -45,7 +48,7 @@ public class ChangeLettersDialog extends JDialog {
 		mainPanel.add(createButtons(), BorderLayout.SOUTH);
 	}
 	
-	public void init(Wordgame model, JFrame parent) {
+	public void launch(Wordgame model) {
 		this.model = model;
 		
 		for (int i=0; i < tiles.size(); i++) {
@@ -57,8 +60,9 @@ public class ChangeLettersDialog extends JDialog {
 		validate.setText("Change " + selectedCount + " letters");
 		validate.setEnabled(false);
 		
-		this.pack();
-		this.setLocationRelativeTo(parent);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	public void select(int i, boolean select) {
@@ -109,12 +113,8 @@ public class ChangeLettersDialog extends JDialog {
 		
 		panel.add(Box.createHorizontalGlue());
 		
-		JButton cancel = new JButton("Annuler");
+		RButton cancel = new RButton("Annuler");
 		panel.add(cancel);
-		cancel.setBackground(GraphicalCharter.BACKGROUND);
-		cancel.setFont(GraphicalCharter.BUTTON_FONT);
-		cancel.setForeground(GraphicalCharter.TEXT);
-		cancel.setFocusable(false);
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -123,12 +123,8 @@ public class ChangeLettersDialog extends JDialog {
 		
 		panel.add(Box.createRigidArea(new Dimension(30, 1)));
 		
-		validate = new JButton("Change 0 letters");
+		validate = new RButton("Change 0 letters");
 		panel.add(validate);
-		validate.setBackground(GraphicalCharter.BACKGROUND);
-		validate.setFont(GraphicalCharter.BUTTON_FONT);
-		validate.setForeground(GraphicalCharter.TEXT);
-		validate.setFocusable(false);
 		validate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (int i=tiles.size()-1; i >= 0; i--) {

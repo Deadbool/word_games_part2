@@ -1,4 +1,4 @@
-package wordgame.presentation;
+package wordgame.presentation.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -34,6 +34,9 @@ import wordgame.control.PlayButtonControl;
 import wordgame.control.PlayerListControl;
 import wordgame.control.RackControl;
 import wordgame.control.WindowManager;
+import wordgame.presentation.GraphicalCharter;
+import wordgame.presentation.components.RCell;
+import wordgame.presentation.components.RTile;
 
 public class WordgameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -232,7 +235,7 @@ public class WordgameFrame extends JFrame {
 		panel.add(Box.createVerticalGlue());
 		change.setBorder(null);
 		change.setAlignmentX(CENTER_ALIGNMENT);
-		change.addActionListener(new ChangeButtonControl(change, model, this));
+		change.addActionListener(new ChangeButtonControl(change, model));
 		
 		JButton play = new JButton(GraphicalCharter.BUTTON_PLAY);
 		panel.add(play);

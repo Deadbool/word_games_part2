@@ -1,9 +1,11 @@
-package wordgame.presentation;
+package wordgame.presentation.components;
 
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import wordgame.presentation.GraphicalCharter;
 
 public class RTile extends JLabel {
 	private static final long serialVersionUID = 1L;

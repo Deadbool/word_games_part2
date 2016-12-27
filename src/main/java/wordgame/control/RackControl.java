@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.presentation.GraphicalCharter;
-import wordgame.presentation.RCell;
-import wordgame.presentation.RTile;
+import wordgame.presentation.components.RCell;
+import wordgame.presentation.components.RTile;
 
 public class RackControl implements Observer, MouseListener {
 
