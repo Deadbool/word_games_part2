@@ -1,11 +1,20 @@
 package wordgame;
 
+import java.util.ArrayList;
+
+import wordgame.abstraction.GameType;
 import wordgame.control.WindowManager;
 
 public class GameIHM {
 	public static void main(String[] args) {
 		
-		//WindowManager.debugScrabble();
-		WindowManager.CREATE_GAME_FRAME.launch();
+		//WindowManager.CREATE_GAME_FRAME.launch();
+		
+		ArrayList<String> players = new ArrayList<String>();
+		players.add("Alpha");
+		players.add("Beta");
+		players.add("Gama");
+		WindowManager.WORDGAME_FRAME.launch(GameType.SCRABBLE, players);
+		
 	}
 }

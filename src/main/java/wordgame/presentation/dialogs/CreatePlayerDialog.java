@@ -1,36 +1,24 @@
 package wordgame.presentation.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
-import wordgame.abstraction.common.BasicRack;
-import wordgame.abstraction.common.WordgameException;
-import wordgame.abstraction.interfaces.Rack;
-import wordgame.abstraction.interfaces.Wordgame;
-import wordgame.control.changeLettersDialog.TileControl;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RButton;
-import wordgame.presentation.components.RTile;
 
 public class CreatePlayerDialog extends JDialog {
 	private static final long serialVersionUID = 1L;

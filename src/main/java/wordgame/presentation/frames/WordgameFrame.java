@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -20,17 +19,14 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import wordgame.GameTUI;
 import wordgame.abstraction.GameType;
 import wordgame.abstraction.common.BasicRack;
-import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
 import wordgame.abstraction.decorators.topword.TopwordDecorator;
-import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.WindowManager;
 import wordgame.control.wordgameFrame.BagControl;
@@ -125,9 +121,11 @@ public class WordgameFrame extends JFrame {
 		JMenuItem miLoad = new JMenuItem("Charger une partie...");
 		mFile.addSeparator();
 		mFile.add(miLoad);
+		miLoad.setEnabled(false);
 		
 		JMenuItem miSave = new JMenuItem("Sauvegarder la partie en cours...");
 		mFile.add(miSave);
+		miSave.setEnabled(false);
 				
 		JMenuItem miQuit = new JMenuItem("Quitter");
 		miQuit.addActionListener(new ActionListener() {
@@ -233,7 +231,7 @@ public class WordgameFrame extends JFrame {
 		panel.add(playerList);
 		playerList.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
 		playerList.setForeground(GraphicalCharter.REVERSE_TEXT);
-		playerList.setFont(GraphicalCharter.BASIC_FONT);
+		playerList.setFont(GraphicalCharter.getBasicFont(24));
 		
 		PlayerListControl listControl = new PlayerListControl(model, playerList);
 		model.addObserver(listControl);

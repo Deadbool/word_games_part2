@@ -1,14 +1,13 @@
 package wordgame;
+import static org.fusesource.jansi.Ansi.ansi;
+
 import java.util.List;
 import java.util.Scanner;
 
 import org.fusesource.jansi.AnsiConsole;
-import static org.fusesource.jansi.Ansi.*;
 
-import wordgame.abstraction.common.BasicWordgame;
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
-import wordgame.abstraction.decorators.topword.TopwordCellDecorator;
 import wordgame.abstraction.decorators.topword.TopwordDecorator;
 import wordgame.abstraction.interfaces.Board;
 import wordgame.abstraction.interfaces.Direction;

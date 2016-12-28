@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -58,7 +56,7 @@ public class ChangeLettersDialog extends JDialog {
 		}
 		
 		selectedCount = 0;
-		validate.setText("Change " + selectedCount + " letters");
+		validate.setText("Echanger " + selectedCount + " lettre" + (selectedCount==1?"":"s"));
 		validate.setEnabled(false);
 		
 		pack();
@@ -77,7 +75,7 @@ public class ChangeLettersDialog extends JDialog {
 			++selectedCount;
 		}
 		
-		validate.setText("Change " + selectedCount + " letters");
+		validate.setText("Echanger " + selectedCount + " lettre" + (selectedCount==1?"":"s"));
 		validate.setEnabled(selectedCount > 0);
 	}
 	
@@ -124,7 +122,7 @@ public class ChangeLettersDialog extends JDialog {
 		
 		panel.add(Box.createRigidArea(new Dimension(30, 1)));
 		
-		validate = new RButton("Change 0 letters");
+		validate = new RButton("Echanger 0 lettres");
 		panel.add(validate);
 		validate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

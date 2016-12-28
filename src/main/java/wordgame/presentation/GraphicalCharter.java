@@ -21,7 +21,9 @@ public class GraphicalCharter {
 	public static final Color REVERSE_TEXT = Color.BLACK;
 	
 	// Fonts
-	public static final Font BASIC_FONT = new Font("Calibri", Font.PLAIN, 24);
+	public static Font getBasicFont(int size) {
+		return new Font("Calibri", Font.PLAIN, size);
+	}
 	public static final Font BUTTON_FONT = new Font("Calibri", Font.PLAIN, 16);
 	public static final Font BAG_FONT = new Font("Arial", Font.BOLD, 28);
 	

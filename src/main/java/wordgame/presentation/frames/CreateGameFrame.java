@@ -120,7 +120,7 @@ public class CreateGameFrame extends JFrame {
 		panel.add(scrabble);
 		group.add(scrabble);
 		scrabble.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
-		scrabble.setFont(GraphicalCharter.BASIC_FONT);
+		scrabble.setFont(GraphicalCharter.getBasicFont(20));
 		scrabble.setFocusable(false);
 		scrabble.setSelected(true);
 		
@@ -128,7 +128,7 @@ public class CreateGameFrame extends JFrame {
 		panel.add(topword);
 		group.add(topword);
 		topword.setBackground(GraphicalCharter.REVERSE_BACKGROUND);
-		topword.setFont(GraphicalCharter.BASIC_FONT);
+		topword.setFont(GraphicalCharter.getBasicFont(20));
 		topword.setFocusable(false);
 		
 		return panel;
@@ -152,7 +152,7 @@ public class CreateGameFrame extends JFrame {
 		
 		playersList = new JList<String>(listModel);
 		panel.add(playersList);
-		playersList.setFont(GraphicalCharter.BASIC_FONT);
+		playersList.setFont(GraphicalCharter.getBasicFont(20));
 		playersList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		playersList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {

@@ -33,11 +33,11 @@ public class PlayButtonControl implements ActionListener {
 				model.skipTurn();
 			} else {
 				JOptionPane.showMessageDialog(frame,
-						"No more place on this cell.");
+						"Plus ce place sur cette case.");
 			}
 		} else {
 			JOptionPane.showMessageDialog(frame,
-			    "This word is not available or cannot be placed there.");
+			    "Mot ou positionnement invalide.");
 		}
 	}
 }
