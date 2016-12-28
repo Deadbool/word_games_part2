@@ -1,4 +1,4 @@
-package wordgame.control;
+package wordgame.control.wordgameFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +13,8 @@ import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.Event;
+import wordgame.control.WindowManager;
 
 public class ChangeButtonControl implements ActionListener, Observer {
 	

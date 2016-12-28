@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -22,18 +24,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import wordgame.GameTUI;
+import wordgame.abstraction.GameType;
 import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.common.Coordinate;
+import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
+import wordgame.abstraction.decorators.topword.TopwordDecorator;
 import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
-import wordgame.control.BagControl;
-import wordgame.control.BoardControl;
-import wordgame.control.CellControl;
-import wordgame.control.ChangeButtonControl;
-import wordgame.control.PlayButtonControl;
-import wordgame.control.PlayerListControl;
-import wordgame.control.RackControl;
 import wordgame.control.WindowManager;
+import wordgame.control.wordgameFrame.BagControl;
+import wordgame.control.wordgameFrame.BoardControl;
+import wordgame.control.wordgameFrame.CellControl;
+import wordgame.control.wordgameFrame.ChangeButtonControl;
+import wordgame.control.wordgameFrame.PlayButtonControl;
+import wordgame.control.wordgameFrame.PlayerListControl;
+import wordgame.control.wordgameFrame.RackControl;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RCell;
 import wordgame.presentation.components.RTile;
@@ -45,15 +51,36 @@ public class WordgameFrame extends JFrame {
 	private Wordgame model;
 	private JPanel boardPanel;
 	
-	public WordgameFrame(Wordgame game) {
-		super("Wordgame");
+	public WordgameFrame() {
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.model = game;
+	}
+	
+	public void launch(GameType gameType, List<String> players) {
+		switch (gameType) {
+			case SCRABBLE:
+				model = ScrabbleDecorator.FACTORY.gameFactory();
+				model.init(GameTUI.class.getResource("/scrabble.wg").getPath(), ScrabbleDecorator.FACTORY);
+				setTitle("Scrabble");
+				break;
+				
+			case TOPWORD:
+				model = TopwordDecorator.FACTORY.gameFactory();
+				model.init(GameTUI.class.getResource("/topword.wg").getPath(), TopwordDecorator.FACTORY);
+				setTitle("Topword");
+				break;
+				
+			default:
+				return;		
+		}
 		
+		for (String player : players) {
+			model.addPlayer(player);
+		}
+				
 		JPanel mainPanel = new JPanel();
 		setContentPane(mainPanel);
 		mainPanel.setLayout(new BorderLayout());
-		setResizable(false);
 		
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		mainPanel.setBackground(GraphicalCharter.BACKGROUND);
@@ -64,6 +91,7 @@ public class WordgameFrame extends JFrame {
 		
 		pack();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	private void createMenu() {
@@ -80,8 +108,8 @@ public class WordgameFrame extends JFrame {
 		miNew.add(miNewScrabble);
 		miNewScrabble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				WindowManager.CREATE_GAME_FRAME.launch(GameType.SCRABBLE);
 				setVisible(false);
-				WindowManager.launchScrabble();
 			}
 		});
 		
@@ -89,8 +117,8 @@ public class WordgameFrame extends JFrame {
 		miNew.add(miNewTopword);
 		miNewTopword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				WindowManager.CREATE_GAME_FRAME.launch(GameType.TOPWORD);
 				setVisible(false);
-				WindowManager.launchTopword();
 			}
 		});
 		

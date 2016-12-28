@@ -1,4 +1,4 @@
-package wordgame.control;
+package wordgame.control.wordgameFrame;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -6,6 +6,7 @@ import java.util.Observer;
 import javax.swing.JLabel;
 
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.Event;
 
 public class BagControl implements Observer {
 	

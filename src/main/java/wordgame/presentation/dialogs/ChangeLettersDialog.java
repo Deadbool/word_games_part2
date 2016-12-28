@@ -21,7 +21,7 @@ import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.common.WordgameException;
 import wordgame.abstraction.interfaces.Rack;
 import wordgame.abstraction.interfaces.Wordgame;
-import wordgame.control.ChangeLettersTileControl;
+import wordgame.control.changeLettersDialog.TileControl;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RButton;
 import wordgame.presentation.components.RTile;
@@ -38,6 +38,7 @@ public class ChangeLettersDialog extends JDialog {
 	public ChangeLettersDialog() {
 		this.setTitle("Echanger des lettres");
 		this.setModal(true);
+		this.setResizable(false);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		setContentPane(mainPanel);
@@ -99,7 +100,7 @@ public class ChangeLettersDialog extends JDialog {
 			rack.add(tile);
 			tile.setHorizontalAlignment(SwingConstants.CENTER);
 			
-			tile.addMouseListener(new ChangeLettersTileControl(i, this));
+			tile.addMouseListener(new TileControl(i, this));
 		}
 				
 		return rack;

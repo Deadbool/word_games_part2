@@ -1,16 +1,16 @@
-package wordgame.control;
+package wordgame.control.changeLettersDialog;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import wordgame.presentation.dialogs.ChangeLettersDialog;
 
-public class ChangeLettersTileControl implements MouseListener {
+public class TileControl implements MouseListener {
 	
 	private ChangeLettersDialog dialog;
 	private int index;
 	
-	public ChangeLettersTileControl(int index, ChangeLettersDialog dialog) {
+	public TileControl(int index, ChangeLettersDialog dialog) {
 		this.index = index;
 		this.dialog = dialog;
 	}

@@ -1,4 +1,4 @@
-package wordgame.control;
+package wordgame.control.wordgameFrame;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.Event;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RCell;
 import wordgame.presentation.components.RTile;

@@ -1,4 +1,4 @@
-package wordgame.control;
+package wordgame.control.wordgameFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package wordgame.control;
+package wordgame.control.wordgameFrame;
 
 import java.awt.Cursor;
 import java.awt.Point;
@@ -20,6 +20,7 @@ import wordgame.abstraction.decorators.scrabble.ScrabbleCellDecorator;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
 import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.Event;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RCell;
 

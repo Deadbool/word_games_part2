@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -25,7 +27,7 @@ import wordgame.abstraction.common.BasicRack;
 import wordgame.abstraction.common.WordgameException;
 import wordgame.abstraction.interfaces.Rack;
 import wordgame.abstraction.interfaces.Wordgame;
-import wordgame.control.ChangeLettersTileControl;
+import wordgame.control.changeLettersDialog.TileControl;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RButton;
 import wordgame.presentation.components.RTile;
@@ -34,6 +36,7 @@ public class CreatePlayerDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	
 	private JTextField input;
+	private RButton validate;
 	
 	private boolean running;
 	private String player;
@@ -42,6 +45,7 @@ public class CreatePlayerDialog extends JDialog {
 		this.setTitle("Nouveau joueur");
 		this.setModal(true);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.setResizable(false);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		setContentPane(mainPanel);
@@ -55,7 +59,9 @@ public class CreatePlayerDialog extends JDialog {
 	public void launch() {
 		player = "";
 		running = true;
+		
 		input.setText("");
+		validate.setEnabled(false);
 		
 		pack();
 		setLocationRelativeTo(null);
@@ -63,7 +69,7 @@ public class CreatePlayerDialog extends JDialog {
 		
 		while (running) {
 			try {
-				Thread.sleep(10);
+				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -83,6 +89,15 @@ public class CreatePlayerDialog extends JDialog {
 		panel.add(input);
 		input.setFont(new Font("Arial", Font.PLAIN, 16));
 		input.setPreferredSize(new Dimension(150, 30));
+		input.addKeyListener(new KeyListener() {
+			public void keyTyped(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+				validate.setEnabled(!"".equals(input.getText()));
+			}
+			public void keyPressed(KeyEvent e) {
+				validate.setEnabled(!"".equals(input.getText()));
+			}
+		});
 				
 		return panel;
 	}
@@ -107,7 +122,7 @@ public class CreatePlayerDialog extends JDialog {
 		
 		panel.add(Box.createRigidArea(new Dimension(30, 1)));
 		
-		RButton validate = new RButton("Valider");
+		validate = new RButton("Valider");
 		panel.add(validate);
 		validate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

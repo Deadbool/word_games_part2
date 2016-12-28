@@ -1,4 +1,4 @@
-package wordgame.control;
+package wordgame.control.wordgameFrame;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -9,6 +9,7 @@ import javax.swing.JList;
 
 import wordgame.abstraction.interfaces.Player;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.Event;
 
 public class PlayerListControl implements Observer {
 	

@@ -1,4 +1,4 @@
-package wordgame.control;
+package wordgame.control.wordgameFrame;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,6 +10,7 @@ import wordgame.abstraction.common.WordgameException;
 import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.Event;
 import wordgame.presentation.components.RCell;
 
 public class BoardControl implements Observer {
