@@ -122,6 +122,12 @@ public class CellControl implements Observer, MouseListener {
 					return;
 				}
 				
+				if (overlay && targetCell.getLetter() == cell.getLetter()) {
+					JOptionPane.showMessageDialog(frame,
+							"Impossible de superposer deux lettres identiques.");
+					return;
+				}
+				
 				if (targetCell != null &&
 						(targetCell.isEmpty() || (overlay && !BoardControl.GET.getWordCells().contains(targetCell)))) {
 					BoardControl.GET.removeCell(cell);

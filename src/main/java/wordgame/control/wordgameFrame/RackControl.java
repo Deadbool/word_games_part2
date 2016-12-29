@@ -95,6 +95,13 @@ public class RackControl implements Observer, MouseListener {
 				return;
 			}
 			
+			if (overlay && targetCell.getLetter() == this.getLetterFromModel()) {
+				JOptionPane.showMessageDialog(frame,
+						"Impossible de superposer deux lettres identiques.");
+				fromModel();
+				return;
+			}
+			
 			if (targetCell != null &&
 					(targetCell.isEmpty() || (overlay && !BoardControl.GET.getWordCells().contains(targetCell)))) {
 				
