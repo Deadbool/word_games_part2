@@ -10,7 +10,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import wordgame.abstraction.common.BasicRack;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RTile;
 

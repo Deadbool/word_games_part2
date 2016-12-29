@@ -3,7 +3,7 @@
 Nicolas Guégan - ACDC - Jeu de mots - Partie 2
 
 ### Défaillance du modèle:
-* On ne peut pas poser de mot qui en croise un autre au scrabble (sauf aux extrémités), ni en rajoutant des lettres au début et à la fin du mot.
+* On ne peut pas poser de mot qui croise ou prolonge un autre mot
 * Le calcul du score au Scrabble est erroné
 * Le dictionnaire ne respecte pas les probabilités de tirage (stockage en lettre/quantité et tirage sur les lettres, donc autant de chance d'avoir un A qu'un Z)
 * Il est possible de poser des mots n'importe où sur le plateau sans les coller aux autres

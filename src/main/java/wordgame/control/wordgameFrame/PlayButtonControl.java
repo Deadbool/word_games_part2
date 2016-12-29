@@ -33,7 +33,7 @@ public class PlayButtonControl implements ActionListener {
 				model.skipTurn();
 			} else {
 				JOptionPane.showMessageDialog(frame,
-						"Plus ce place sur cette case.");
+						"Plus de place sur cette case.");
 			}
 		} else {
 			JOptionPane.showMessageDialog(frame,

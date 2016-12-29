@@ -11,7 +11,6 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.Event;
 import wordgame.control.WindowManager;
