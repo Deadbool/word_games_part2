@@ -35,7 +35,7 @@ public class BoardControl implements Observer {
 	public void addCell(RCell cell) {
 		wordCells.add(cell);
 		sortCells();
-		System.out.println("Word on board: " + getWord());
+		System.out.println("Word on board: " + getWord() + ", " + getWordPosition() + ", " + getWordDirection());
 	}
 	
 	public void removeCell(RCell cell) {
@@ -227,10 +227,38 @@ public class BoardControl implements Observer {
 	}
 	
 	public Coordinate getWordPosition() {
-		if (wordCells.size() == 0)
+		Direction dir = getWordDirection();
+		if (wordCells.size() == 0 || dir == null)
 			return null;
 		
+		Cell modelCell = null;
 		RCell origin = wordCells.get(0);
-		return Coordinate.fromRowCol(origin.getRow(), origin.getCol());
+		int row = origin.getRow();
+		int col = origin.getCol();
+		
+		if (dir == Direction.LINE) {
+			try {
+				modelCell = model.getBoard().getCell(Coordinate.fromRowCol(wordCells.get(0).getRow(), col - 1));
+				while (!modelCell.isEmpty()) {
+					--col;
+					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(wordCells.get(0).getRow(), col - 1));
+				}
+			} catch (WordgameException e1) {
+				e1.printStackTrace();
+			}				
+			
+		} else {
+			try {
+				modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row - 1, wordCells.get(0).getCol()));
+				while (!modelCell.isEmpty()) {
+					--row;
+					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row - 1, wordCells.get(0).getCol()));
+				}
+			} catch (WordgameException e1) {
+				e1.printStackTrace();
+			}	
+		}
+		
+		return Coordinate.fromRowCol(row, col);
 	}
 }

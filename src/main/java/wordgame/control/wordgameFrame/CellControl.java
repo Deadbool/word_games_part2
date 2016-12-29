@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import wordgame.abstraction.common.Coordinate;
@@ -16,6 +17,7 @@ import wordgame.abstraction.common.WordgameException;
 import wordgame.abstraction.decorators.scrabble.Multiplier;
 import wordgame.abstraction.decorators.scrabble.ScrabbleCellDecorator;
 import wordgame.abstraction.decorators.scrabble.ScrabbleDecorator;
+import wordgame.abstraction.decorators.topword.TopwordCellDecorator;
 import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.Event;
@@ -111,6 +113,14 @@ public class CellControl implements Observer, MouseListener {
 			
 			try {
 				RCell targetCell = (RCell) (board.findComponentAt(cellX, cellY));
+				
+				Cell modelCell = model.getBoard().getCell(Coordinate.fromRowCol(targetCell.getRow(), targetCell.getCol()));
+				if (modelCell instanceof TopwordCellDecorator &&
+						((TopwordCellDecorator)modelCell).getLevel() >= TopwordCellDecorator.MAX_LEVEL) {
+					JOptionPane.showMessageDialog(frame,
+							"Cette case contient déjà le nombre maximum de lettres autorisé. ("+TopwordCellDecorator.MAX_LEVEL+")");
+					return;
+				}
 				
 				if (targetCell != null &&
 						(targetCell.isEmpty() || (overlay && !BoardControl.GET.getWordCells().contains(targetCell)))) {

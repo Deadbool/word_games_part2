@@ -5,6 +5,8 @@ import wordgame.abstraction.interfaces.Cell;
 
 public class TopwordCellDecorator extends CellDecorator {
 	
+	public static final int MAX_LEVEL = 5;
+	
 	private int level = 0;
 
 	public TopwordCellDecorator(Cell decoratedCell) {
