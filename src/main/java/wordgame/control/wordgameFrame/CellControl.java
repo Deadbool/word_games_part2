@@ -84,15 +84,18 @@ public class CellControl implements Observer, MouseListener {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		if (!cell.isEmpty()) {			
-			Toolkit toolkit = Toolkit.getDefaultToolkit();
-			Cursor cur = toolkit.createCustomCursor(GraphicalCharter.getCursor(cell.getLetter()+""),
-					new Point(1, 1), cell.getLetter() +" cursor");
-			
-			frame.setCursor(cur);
-			
-			dragging = true;
-		}
+		try {
+			if (!cell.isEmpty() &&
+					model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow(), cell.getCol())).isEmpty()) {			
+				Toolkit toolkit = Toolkit.getDefaultToolkit();
+				Cursor cur = toolkit.createCustomCursor(GraphicalCharter.getCursor(cell.getLetter()+""),
+						new Point(1, 1), cell.getLetter() +" cursor");
+				
+				frame.setCursor(cur);
+				
+				dragging = true;
+			}
+		} catch (Exception ex) {}
 	}
 
 	public void mouseReleased(MouseEvent e) {

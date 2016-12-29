@@ -29,6 +29,9 @@ public class PlayButtonControl implements ActionListener {
 		if (model.validMove(pos, dir, word)) {
 			if (model.putWord(pos, dir, word)) {
 				model.getCurrentPlayer().addPoint(model.getScoreForMove(pos, dir, word));
+			
+				// TODO:: Detect if the game is over and display results if it is
+				
 				model.fillCurrentPlayerRack();
 				model.skipTurn();
 			} else {
