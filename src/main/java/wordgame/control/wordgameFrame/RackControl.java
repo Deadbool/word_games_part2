@@ -1,6 +1,5 @@
 package wordgame.control.wordgameFrame;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -9,13 +8,13 @@ import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import wordgame.abstraction.interfaces.Cell;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.Event;
+import wordgame.control.WindowManager;
 import wordgame.presentation.GraphicalCharter;
 import wordgame.presentation.components.RCell;
 import wordgame.presentation.components.RTile;
@@ -82,8 +81,16 @@ public class RackControl implements Observer, MouseListener {
 			RCell targetCell = (RCell) (board.findComponentAt(cellX, cellY));
 			
 			if (targetCell.isEmpty()) {
-				targetCell.setContent(getLetterFromModel());
+				
+				if ('_' == getLetterFromModel()) {
+					WindowManager.JOKER_DIALOG.launch();
+					targetCell.setContent(WindowManager.JOKER_DIALOG.getLetter());
+				} else {
+					targetCell.setContent(getLetterFromModel());
+				}
+				
 				BoardControl.GET.addCell(targetCell);
+			
 			} else {
 				fromModel();
 			}

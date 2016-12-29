@@ -33,5 +33,3 @@ Je n'aurai sûrement pas le temps de corriger les nombreux bugs du code que l'on
 * Ajout d'un icône représentant le sac de lettres et d'un compteur affichant le nombre de lettres restantes
 * Création d'un BoardControl qui analyse les lettres posées sur board par le joueur pour déterminer le mot formé, sa position et son orientation. Il est utilisé pour interfacer l'IHM avec le modèle lors de la pose d'un mot.
 * Ajout d'un fenêtre de création de partie permettant la saisie des joueurs et le choix du jeu
-
-À ce jour l'IHM me semble plutôt complète. Je vais donc attaquer la corrections de certains bugs du modèle et à l'intelligence artificielle.

@@ -35,7 +35,7 @@ public class BoardControl implements Observer {
 	public void addCell(RCell cell) {
 		wordCells.add(cell);
 		sortCells();
-		//System.out.println("Word on board: " + getWord());
+		System.out.println("Word on board: " + getWord());
 	}
 	
 	public void removeCell(RCell cell) {
@@ -62,8 +62,25 @@ public class BoardControl implements Observer {
 	public Direction getWordDirection() {
 		if (wordCells.size() == 0)
 			return null;
-		else if (wordCells.size() == 1)
-			return Direction.LINE;
+		else if (wordCells.size() == 1) {
+			RCell cell = wordCells.get(0);
+			boolean top = false;
+			boolean bot = false;
+			
+			try {
+				top = !model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow()-1, cell.getCol())).isEmpty();				
+			} catch (WordgameException e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				bot = !model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow()+1, cell.getCol())).isEmpty();				
+			} catch (WordgameException e) {
+				e.printStackTrace();
+			}
+			
+			return (top || bot) ? Direction.COLUMN : Direction.LINE;
+		}
 		
 		int row = wordCells.get(0).getRow();
 		int col = wordCells.get(0).getCol();
@@ -97,46 +114,111 @@ public class BoardControl implements Observer {
 			if (dir == Direction.LINE) {
 				int startPos =  wordCells.get(0).getCol();
 				int offset = 0;
+				int expectedPos = 0;
+				int row = 0;
+				Cell modelCell = null;
 				
-				for (int i=0; i < wordCells.size(); i++) {
-					RCell cell = wordCells.get(i);
-					int expectedPos = startPos + i + offset;
+				int realStartPos = startPos;
+				try {
+					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(wordCells.get(0).getRow(), realStartPos - 1));
+					while (!modelCell.isEmpty()) {
+						word = modelCell.getContent() + word;
+						--realStartPos;
+						modelCell = model.getBoard().getCell(Coordinate.fromRowCol(wordCells.get(0).getRow(), realStartPos - 1));
+					}
+				} catch (WordgameException e1) {
+					e1.printStackTrace();
+				}				
+				
+				for (int i=0; i < wordCells.size() + offset; i++) {
+					RCell cell = wordCells.get(i - offset);
+					row = cell.getRow();
+					expectedPos = startPos + i;
 					
 					if (cell.getCol() == expectedPos) {
 						word += cell.getLetter();
 					} else {
 						try {
-							Cell modelCell = model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow(), expectedPos));
+							modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row, expectedPos));
 							if (modelCell.isEmpty())
 								return "";
+							
 							word += modelCell.getContent();
+							++offset;
+							
 						} catch (WordgameException e) {
 							e.printStackTrace();
+							return "";
 						}
-						++offset;
 					}
 				}
+				
+				try {
+					++expectedPos;
+					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row, expectedPos));
+					while (!modelCell.isEmpty()) {
+						word += modelCell.getContent();
+						++expectedPos;
+						modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row, expectedPos));
+					}
+					
+				} catch (WordgameException e) {
+					e.printStackTrace();
+				}
+				
 			} else {
 				int startPos =  wordCells.get(0).getRow();
 				int offset = 0;
+				int col = 0;
+				int expectedPos = 0;
+				Cell modelCell = null;
 				
-				for (int i=0; i < wordCells.size(); i++) {
-					RCell cell = wordCells.get(i);
-					int expectedPos = startPos + i + offset;
+				int realStartPos = startPos;
+				try {
+					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(realStartPos - 1, wordCells.get(0).getCol()));
+					while (!modelCell.isEmpty()) {
+						word = modelCell.getContent() + word;
+						--realStartPos;
+						modelCell = model.getBoard().getCell(Coordinate.fromRowCol(realStartPos - 1, wordCells.get(0).getCol()));
+					}
+				} catch (WordgameException e1) {
+					e1.printStackTrace();
+				}
+				
+				for (int i=0; i < wordCells.size() + offset; i++) {
+					RCell cell = wordCells.get(i - offset);
+					col = cell.getCol();
+					expectedPos = startPos + i;
 					
 					if (cell.getRow() == expectedPos) {
 						word += cell.getLetter();
 					} else {
 						try {
-							Cell modelCell = model.getBoard().getCell(Coordinate.fromRowCol(expectedPos, cell.getCol()));
+							modelCell = model.getBoard().getCell(Coordinate.fromRowCol(expectedPos, col));
 							if (modelCell.isEmpty())
 								return "";
+							
 							word += modelCell.getContent();
+							++offset;
+							
 						} catch (WordgameException e) {
 							e.printStackTrace();
+							return "";
 						}
-						++offset;
 					}
+				}
+				
+				try {
+					++expectedPos;
+					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(expectedPos, col));					
+					while (!modelCell.isEmpty()) {
+						word += modelCell.getContent();
+						++expectedPos;
+						modelCell = model.getBoard().getCell(Coordinate.fromRowCol(expectedPos, col));
+					}
+					
+				} catch (WordgameException e) {
+					e.printStackTrace();
 				}
 			}
 		}

@@ -2,6 +2,7 @@ package wordgame.control;
 
 import wordgame.presentation.dialogs.ChangeLettersDialog;
 import wordgame.presentation.dialogs.CreatePlayerDialog;
+import wordgame.presentation.dialogs.JokerDialog;
 import wordgame.presentation.frames.CreateGameFrame;
 import wordgame.presentation.frames.WordgameFrame;
 
@@ -14,4 +15,5 @@ public class WindowManager {
 	// Dialogs
 	public static final ChangeLettersDialog CHANGE_LETTERS_DIALOG = new ChangeLettersDialog();
 	public static final CreatePlayerDialog CREATE_PLAYER_DIALOG = new CreatePlayerDialog();
+	public static final JokerDialog JOKER_DIALOG = new JokerDialog();
 }

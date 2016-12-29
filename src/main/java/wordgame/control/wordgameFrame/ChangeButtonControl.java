@@ -6,12 +6,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import wordgame.abstraction.common.BasicRack;
-import wordgame.abstraction.common.Coordinate;
-import wordgame.abstraction.interfaces.Direction;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.Event;
 import wordgame.control.WindowManager;

@@ -6,9 +6,7 @@ import java.util.List;
 import wordgame.abstraction.interfaces.Rack;
 
 public class BasicRack implements Rack {
-	
-	public static final int RACK_SIZE = 7;
-	
+		
 	private List<Character> letters;
 	
 	public BasicRack() {
@@ -29,7 +27,13 @@ public class BasicRack implements Rack {
 	
 	public Character pickLetter(Character letter) throws WordgameException {
 		if(!this.letters.remove(letter)) {
-			throw new WordgameException("Letter '" + letter + "' not in rack");
+			System.err.println(this.letters.toString());
+			System.err.println(this.letters.contains((Character) '_'));
+			if (this.letters.remove(((Character) '_'))) {
+				return letter;
+			} else {
+				throw new WordgameException("Letter '" + letter + "' not in rack");
+			}
 		}
 		return letter;
 	}

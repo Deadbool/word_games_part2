@@ -1,9 +1,9 @@
 package wordgame.abstraction.decorators.scrabble;
 
+import static org.fusesource.jansi.Ansi.ansi;
+
 import wordgame.abstraction.decorators.CellDecorator;
 import wordgame.abstraction.interfaces.Cell;
-
-import static org.fusesource.jansi.Ansi.*;
 
 public class ScrabbleCellDecorator extends CellDecorator {
 
