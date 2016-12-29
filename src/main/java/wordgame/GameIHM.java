@@ -14,7 +14,8 @@ public class GameIHM {
 		players.add("Alpha");
 		players.add("Beta");
 		players.add("Gama");
-		WindowManager.WORDGAME_FRAME.launch(GameType.SCRABBLE, players);
+		players.add("Omega");
+		WindowManager.WORDGAME_FRAME.launch(GameType.TOPWORD, players);
 		
 	}
 }

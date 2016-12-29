@@ -24,6 +24,8 @@ import wordgame.presentation.components.RCell;
 
 public class CellControl implements Observer, MouseListener {
 	
+	private boolean overlay;
+	
 	private RCell cell;
 	private Wordgame model;
 	
@@ -32,11 +34,12 @@ public class CellControl implements Observer, MouseListener {
 	
 	private boolean dragging;
 
-	public CellControl(RCell cell, Wordgame model, JPanel board, JFrame frame) {
+	public CellControl(RCell cell, Wordgame model, JPanel board, JFrame frame, boolean overlay) {
 		this.model = model;
 		this.cell = cell;
 		this.frame = frame;
 		this.board = board;
+		this.overlay = overlay;
 		
 		dragging = false;
 		
@@ -86,7 +89,7 @@ public class CellControl implements Observer, MouseListener {
 	public void mousePressed(MouseEvent e) {
 		try {
 			if (!cell.isEmpty() &&
-					model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow(), cell.getCol())).isEmpty()) {			
+					model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow(), cell.getCol())).getContent() != cell.getLetter()) {			
 				Toolkit toolkit = Toolkit.getDefaultToolkit();
 				Cursor cur = toolkit.createCustomCursor(GraphicalCharter.getCursor(cell.getLetter()+""),
 						new Point(1, 1), cell.getLetter() +" cursor");
@@ -109,7 +112,8 @@ public class CellControl implements Observer, MouseListener {
 			try {
 				RCell targetCell = (RCell) (board.findComponentAt(cellX, cellY));
 				
-				if (targetCell.isEmpty()) {
+				if (targetCell != null &&
+						(targetCell.isEmpty() || (overlay && !BoardControl.GET.getWordCells().contains(targetCell)))) {
 					BoardControl.GET.removeCell(cell);
 					
 					targetCell.setFromRCell(cell);

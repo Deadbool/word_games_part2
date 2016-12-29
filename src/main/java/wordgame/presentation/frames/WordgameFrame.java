@@ -43,6 +43,8 @@ import wordgame.presentation.components.RTile;
 public class WordgameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
+	private GameType gameType;
+	
 	// Model
 	private Wordgame model;
 	private JPanel boardPanel;
@@ -53,6 +55,8 @@ public class WordgameFrame extends JFrame {
 	}
 	
 	public void launch(GameType gameType, List<String> players) {
+		this.gameType = gameType;
+		
 		switch (gameType) {
 			case SCRABBLE:
 				model = ScrabbleDecorator.FACTORY.gameFactory();
@@ -162,7 +166,7 @@ public class WordgameFrame extends JFrame {
 				RCell cell = new RCell(r, c);
 				board.add(cell);
 				
-				CellControl cellControl = new CellControl(cell, model, boardPanel, this);
+				CellControl cellControl = new CellControl(cell, model, boardPanel, this, gameType == GameType.TOPWORD);
 				model.addObserver(cellControl);
 				cell.addMouseListener(cellControl);
 			}
@@ -186,7 +190,7 @@ public class WordgameFrame extends JFrame {
 			rack.add(tile);
 			tile.setHorizontalAlignment(SwingConstants.CENTER);
 			
-			RackControl rackControl = new RackControl(tile, model, this.boardPanel, this);
+			RackControl rackControl = new RackControl(tile, model, this.boardPanel, this, gameType == GameType.TOPWORD);
 			model.addObserver(rackControl);
 			
 			tile.addMouseListener(rackControl);

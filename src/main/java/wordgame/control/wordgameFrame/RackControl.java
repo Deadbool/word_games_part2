@@ -20,6 +20,8 @@ import wordgame.presentation.components.RTile;
 
 public class RackControl implements Observer, MouseListener {
 
+	private boolean overlay;
+	
 	private Wordgame model;
 	
 	private RTile tile;
@@ -27,11 +29,12 @@ public class RackControl implements Observer, MouseListener {
 	private JFrame frame;
 	private JPanel board;
 	
-	public RackControl(RTile tile, Wordgame model, JPanel board, JFrame frame) {
+	public RackControl(RTile tile, Wordgame model, JPanel board, JFrame frame, boolean overlay) {
 		this.tile = tile;
 		this.model = model;
 		this.frame = frame;
 		this.board = board;
+		this.overlay = overlay;
 		fromModel();
 	}
 
@@ -79,7 +82,8 @@ public class RackControl implements Observer, MouseListener {
 		try {
 			RCell targetCell = (RCell) (board.findComponentAt(cellX, cellY));
 			
-			if (targetCell.isEmpty()) {
+			if (targetCell != null &&
+					(targetCell.isEmpty() || (overlay && !BoardControl.GET.getWordCells().contains(targetCell)))) {
 				
 				if ('_' == getLetterFromModel()) {
 					WindowManager.JOKER_DIALOG.launch();
