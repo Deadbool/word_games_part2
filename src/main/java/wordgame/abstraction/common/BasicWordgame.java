@@ -87,7 +87,7 @@ public class BasicWordgame extends Wordgame implements WordgameFactory {
 		
 		// Create letter bag
 		JsonArray alphabetConf = config.get("letters").getAsJsonArray();
-		letterBag = new BasicLetterBag(alphabetConf);
+		letterBag = new CorrectLetterBag(alphabetConf);
 		
 		return true;
 	}

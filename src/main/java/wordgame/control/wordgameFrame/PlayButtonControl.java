@@ -8,7 +8,9 @@ import javax.swing.JOptionPane;
 
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.interfaces.Direction;
+import wordgame.abstraction.interfaces.Player;
 import wordgame.abstraction.interfaces.Wordgame;
+import wordgame.control.WindowManager;
 
 public class PlayButtonControl implements ActionListener {
 	
@@ -30,7 +32,13 @@ public class PlayButtonControl implements ActionListener {
 			if (model.putWord(pos, dir, word)) {
 				model.getCurrentPlayer().addPoint(model.getScoreForMove(pos, dir, word));
 			
-				// TODO:: Detect if the game is over and display results if it is
+				if (model.isOver()) {
+					Player winner = model.getCurrentPlayer();
+					JOptionPane.showMessageDialog(frame, "Partie terminée :\n" + winner.getNickname()
+							+ " gagne avec " + winner.getScore() + " points !");
+					frame.setVisible(false);
+					WindowManager.CREATE_GAME_FRAME.launch();
+				}
 				
 				model.fillCurrentPlayerRack();
 				model.skipTurn();

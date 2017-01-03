@@ -5,7 +5,7 @@ Nicolas Guégan - ACDC - Jeu de mots - Partie 2
 ### Défaillances du modèle:
 * On ne peut pas poser de mot qui croise un autre mot Scrabble [amélioré mais pas corrigé]
 * On ne peut pas prolonger un mot ni au Topord ou au Scrabble avec plus d'une lettre [corrigé]
-* Le dictionnaire ne respecte pas les probabilités de tirage (stockage en lettre/quantité et tirage sur les lettres, donc autant de chance d'avoir un A qu'un Z)
+* Le dictionnaire ne respecte pas les probabilités de tirage (stockage en lettre/quantité et tirage sur les lettres, donc autant de chance d'avoir un A qu'un Z) [corrigé avec CorrectLetterBag]
 * Il est possible de poser des mots n'importe où sur le plateau sans les coller aux autres
 * Les fonctionnalités de sauvegarde et de reprise de parties ne sont pas implémentées [présentes dans l'IHM mais désactivées]
 * Les mots joués ne sont pas vérifié avec le dictionnaire [corrigé]

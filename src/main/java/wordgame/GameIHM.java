@@ -1,8 +1,5 @@
 package wordgame;
 
-import java.util.ArrayList;
-
-import wordgame.abstraction.GameType;
 import wordgame.control.WindowManager;
 
 public class GameIHM {
