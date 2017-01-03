@@ -117,15 +117,21 @@ public class CellControl implements Observer, MouseListener {
 				Cell modelCell = model.getBoard().getCell(Coordinate.fromRowCol(targetCell.getRow(), targetCell.getCol()));
 				if (modelCell instanceof TopwordCellDecorator &&
 						((TopwordCellDecorator)modelCell).getLevel() >= TopwordCellDecorator.MAX_LEVEL) {
-					JOptionPane.showMessageDialog(frame,
+					
+					if (!cell.equals(targetCell)) {
+						JOptionPane.showMessageDialog(frame,
 							"Cette case contient déjà le nombre maximum de lettres autorisé. ("+TopwordCellDecorator.MAX_LEVEL+")");
-					return;
+						return;
+					}
 				}
 				
 				if (overlay && targetCell.getLetter() == cell.getLetter()) {
-					JOptionPane.showMessageDialog(frame,
+					
+					if (!cell.equals(targetCell)) {
+						JOptionPane.showMessageDialog(frame,
 							"Impossible de superposer deux lettres identiques.");
-					return;
+						return;
+					}
 				}
 				
 				if (targetCell != null &&
