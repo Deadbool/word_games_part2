@@ -36,4 +36,5 @@ Nicolas Guégan - ACDC - Jeu de mots - Partie 2
 * Gestion des jokers via une boîte de dialogue (le joker ne compte pas pour zéro mais vaut le nombre de points de la lettre réelle)
 * Corrections majeures du BoardControl pour détecter correctement les nouveaux mots
 * Implémentations d'un mode overlay pour le drag and drop du topword
-* Corrections apportées au modèle
+* Correction de bugs dans le modèle
+* Gestion des fins de partie
