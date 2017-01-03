@@ -268,11 +268,11 @@ public class BasicWordgame extends Wordgame implements WordgameFactory {
 		if(direction == Direction.LINE){
 			try {
 				before = board.getCell(extremity.decX()).isEmpty();
-			} catch (WordgameException e) {}
+			} catch (Exception e) {}
 			try { 
 				for(int i = 0; i < word.length(); i++){ extremity = extremity.incX(); }
 				after = board.getCell(extremity.incX()).isEmpty();
-			} catch (WordgameException e) {}
+			} catch (Exception e) {}
 			valid = valid && (before && after);
 		}
 		else { // (direction == Direction.COLUMN)

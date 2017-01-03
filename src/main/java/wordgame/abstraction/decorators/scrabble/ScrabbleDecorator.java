@@ -157,14 +157,15 @@ public class ScrabbleDecorator extends WordgameDecorator {
 		for( int i = 0; i < word.length(); i++) {
 			try {
 				char letter = word.charAt(i);
-				if (getBoard().getCell(currentCoord).isEmpty()) {
+				//if (getBoard().getCell(currentCoord).isEmpty()) {
+				if (getBoard().getCell(currentCoord).getContent() != letter) {
 					getCurrentPlayer().getRack().pickLetter(letter);
 					getBoard().getCell(currentCoord).setContent(letter);
 				}
-				else {
+				/*else {
 					System.out.println("Can't place a letter on top of another.");
 					return false;
-				}
+				}*/
 			} catch (WordgameException e) {
 				e.printStackTrace();
 				return false;
