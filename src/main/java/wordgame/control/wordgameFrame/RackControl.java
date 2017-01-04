@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import wordgame.abstraction.common.Coordinate;
 import wordgame.abstraction.decorators.topword.TopwordCellDecorator;
 import wordgame.abstraction.interfaces.Cell;
+import wordgame.abstraction.interfaces.Rack;
 import wordgame.abstraction.interfaces.Wordgame;
 import wordgame.control.Event;
 import wordgame.control.WindowManager;
@@ -105,7 +106,7 @@ public class RackControl implements Observer, MouseListener {
 			if (targetCell != null &&
 					(targetCell.isEmpty() || (overlay && !BoardControl.GET.getWordCells().contains(targetCell)))) {
 				
-				if ('_' == getLetterFromModel()) {
+				if (Rack.JOKER_CHAR == getLetterFromModel()) {
 					WindowManager.JOKER_DIALOG.launch();
 					targetCell.setContent(WindowManager.JOKER_DIALOG.getLetter());
 				} else {

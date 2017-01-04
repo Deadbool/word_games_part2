@@ -8,6 +8,8 @@ public interface Rack {
 	
 	public static final int RACK_SIZE = 7;
 	
+	public static final Character JOKER_CHAR = new Character('_');
+	
 	int size();
 	void addLetter(Character letter);
 	Character pickLetter(Character letter) throws WordgameException;

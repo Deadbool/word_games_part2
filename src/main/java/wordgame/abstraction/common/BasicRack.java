@@ -28,8 +28,8 @@ public class BasicRack implements Rack {
 	public Character pickLetter(Character letter) throws WordgameException {
 		if(!this.letters.remove(letter)) {
 			System.err.println(this.letters.toString());
-			System.err.println(this.letters.contains((Character) '_'));
-			if (this.letters.remove(((Character) '_'))) {
+			System.err.println(this.letters.contains(Rack.JOKER_CHAR));
+			if (this.letters.remove((Rack.JOKER_CHAR))) {
 				return letter;
 			} else {
 				throw new WordgameException("Letter '" + letter + "' not in rack");
@@ -54,6 +54,8 @@ public class BasicRack implements Rack {
 			// Lettre en main
 			else if (lettersCopy.contains(letter)){
 				lettersCopy.remove(letter);
+			}else if (lettersCopy.contains(Rack.JOKER_CHAR)){
+				lettersCopy.remove(Rack.JOKER_CHAR);
 			}
 			else {
 				return false;
