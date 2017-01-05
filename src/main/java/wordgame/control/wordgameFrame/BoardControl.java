@@ -243,9 +243,7 @@ public class BoardControl implements Observer {
 					--col;
 					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(wordCells.get(0).getRow(), col - 1));
 				}
-			} catch (WordgameException e1) {
-				e1.printStackTrace();
-			}				
+			} catch (WordgameException e1) {}				
 			
 		} else {
 			try {
@@ -254,9 +252,7 @@ public class BoardControl implements Observer {
 					--row;
 					modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row - 1, wordCells.get(0).getCol()));
 				}
-			} catch (WordgameException e1) {
-				e1.printStackTrace();
-			}	
+			} catch (WordgameException e1) {}	
 		}
 		
 		return Coordinate.fromRowCol(row, col);
