@@ -70,13 +70,13 @@ public class BoardControl implements Observer {
 			try {
 				top = !model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow()-1, cell.getCol())).isEmpty();				
 			} catch (WordgameException e) {
-				e.printStackTrace();
+				
 			}
 			
 			try {
 				bot = !model.getBoard().getCell(Coordinate.fromRowCol(cell.getRow()+1, cell.getCol())).isEmpty();				
 			} catch (WordgameException e) {
-				e.printStackTrace();
+				
 			}
 			
 			return (top || bot) ? Direction.COLUMN : Direction.LINE;
@@ -147,7 +147,7 @@ public class BoardControl implements Observer {
 							++offset;
 							
 						} catch (WordgameException e) {
-							e.printStackTrace();
+							
 							return "";
 						}
 					}
@@ -162,9 +162,7 @@ public class BoardControl implements Observer {
 						modelCell = model.getBoard().getCell(Coordinate.fromRowCol(row, expectedPos));
 					}
 					
-				} catch (WordgameException e) {
-					e.printStackTrace();
-				}
+				} catch (WordgameException e) {}
 				
 			} else {
 				int startPos =  wordCells.get(0).getRow();
@@ -202,7 +200,7 @@ public class BoardControl implements Observer {
 							++offset;
 							
 						} catch (WordgameException e) {
-							e.printStackTrace();
+							
 							return "";
 						}
 					}
@@ -218,7 +216,7 @@ public class BoardControl implements Observer {
 					}
 					
 				} catch (WordgameException e) {
-					e.printStackTrace();
+					
 				}
 			}
 		}
